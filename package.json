@@ -10,6 +10,11 @@
   "bugs": "https://github.com/ascribe/onion-boarding/issues",
   "main": "app/app.js",
   "scripts": {
+    "lint": "eslint ./",
+    "build": "NODE_ENV=extract webpack",
+    "build:dist": "rimraf ./dist && NODE_ENV=production webpack -p",
+    "clean": "rimraf ./build ./dist",
+    "start": "NODE_ENV=demo node server.demo.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ascribe",
