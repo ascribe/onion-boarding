@@ -25,13 +25,13 @@ const plugins = [
     new webpack.DefinePlugin({
         'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') }
     }),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoErrorsPlugin()
 ];
 
 const extractPlugins = [
     new ExtractTextPlugin(PRODUCTION ? 'styles.min.css' : 'styles.css', {
         allChunks: true
-    }),
+    })
 ];
 
 const prodPlugins = [
@@ -85,7 +85,10 @@ const CSS_LOADER = combineLoaders([
 
 
 const config = {
-    entry: [PATHS.app],
+    entry: [
+        PRODUCTION || EXTRACT ? 'bootstrap-loader/extractStyles' : 'bootstrap-loader',
+        PATHS.app
+    ],
 
     output: {
         filename: PRODUCTION ? 'bundle.min.js' : 'bundle.js',
@@ -122,9 +125,6 @@ const config = {
         ]
     },
 
-    sassLoader: {
-        includePaths: [PATHS.nodeModules]
-    },
     postcss: [autoPrefixer({ browsers: COMPATIBILITY })]
 };
 
