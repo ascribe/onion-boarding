@@ -35,7 +35,6 @@ const extractPlugins = [
 ];
 
 const prodPlugins = [
-    ...extractPlugins,
     new webpack.optimize.UglifyJsPlugin({
         compress: {
             warnings: false
@@ -50,16 +49,17 @@ const prodPlugins = [
     })
 ];
 
+if (EXTRACT || PRODUCTION) {
+    plugins.push(...extractPlugins);
+}
+
 if (PRODUCTION) {
     plugins.push(...prodPlugins);
 }
 
-if (EXTRACT) {
-    plugins.push(...extractPlugins);
-}
-
 // Modules
-// CSS loader
+// **Note** Make sure css-loader's importLoader value is equal to the number of loaders after it
+// to make sure that CSS Module composes also invoke the full loader chain.
 const CSS_LOADER = combineLoaders([
     {
         loader: 'css',
