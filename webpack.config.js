@@ -11,7 +11,7 @@ const PRODUCTION = process.env.NODE_ENV === 'production';
 const EXTRACT = process.env.NODE_ENV === 'extract';
 
 const PATHS = {
-    app: path.resolve(__dirname, 'app'),
+    app: path.resolve(__dirname, 'src/app.js'),
     build: path.resolve(__dirname, 'build'),
     dist: path.resolve(__dirname, 'dist'),
     nodeModules: path.resolve(__dirname, 'node_modules')
