@@ -7,6 +7,8 @@ const autoPrefixer = require('autoprefixer');
 const combineLoaders = require('webpack-combine-loaders');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+require('dotenv').load({ silent: true });
+
 const PRODUCTION = process.env.NODE_ENV === 'production';
 const EXTRACT = process.env.NODE_ENV === 'extract';
 
@@ -20,11 +22,19 @@ const PATHS = {
 // Browsers to target when prefixing CSS.
 const COMPATIBILITY = ['Chrome >= 30', 'Safari >= 6.1', 'Firefox >= 35', 'Opera >= 32', 'iOS >= 8', 'Android >= 2.3', 'ie >= 10'];
 
+// Definitions injected into app
+const DEFINITIONS = {
+    'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') },
+
+    'process.env': { API_URL: JSON.stringify(process.env.API_URL || 'https://staging.ascribe.io/api') },
+    'process.env': { SERVER_URL: JSON.stringify(process.env.SERVER_URL || 'https://staging.ascribe.io/') },
+
+    'process.env': { S3_ACCESS_KEY: JSON.stringify(process.env.S3_ACCESS_KEY || '') }
+};
+
 // Plugins
 const plugins = [
-    new webpack.DefinePlugin({
-        'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') }
-    }),
+    new webpack.DefinePlugin(DEFINITIONS),
     new webpack.NoErrorsPlugin()
 ];
 
