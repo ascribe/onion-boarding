@@ -1,10 +1,9 @@
 import React from 'react';
 
-import CreateBlobUploader from 'ascribe-react-components/modules/uploader/extended_uploaders/create_blob_uploader';
+import { CreateBlobUploader, uploaderSpecExtender } from 'ascribe-react-components/modules/uploader';
 
 import AppConstants from '../../constants/app_constants';
 
-import uploaderSpecExtender from 'ascribe-react-components/modules/uploader/utils/uploader_spec_extender';
 import { getCsrfToken, makeCsrfHeader } from '../utils/csrf';
 
 

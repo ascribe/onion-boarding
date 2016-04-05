@@ -1,7 +1,6 @@
 import React from 'react';
 
-import ReactS3FineUploader from 'ascribe-react-components/modules/uploader/react_s3_fine_uploader';
-import CustomHeaderOnChangeUploader from 'ascribe-react-components/modules/uploader/extended_uploaders/custom_header_on_change_uploader';
+import { CustomHeaderOnChangeUploader, ReactS3FineUploader, uploaderSpecExtender } from 'ascribe-react-components/modules/uploader';
 
 import AscribeBlobUploader from './ascribe_blob_uploader';
 import AscribeRequestKeyUploader from './ascribe_request_key_uploader';
@@ -10,7 +9,6 @@ import AppUrls from '../../constants/app_urls';
 import CsrfConstants from '../../constants/csrf_constants';
 import UploaderConstants from '../../constants/uploader_constants';
 
-import uploaderSpecExtender from 'ascribe-react-components/modules/uploader/utils/uploader_spec_extender';
 import { getCsrfToken, makeCsrfHeader } from '../../utils/csrf';
 
 

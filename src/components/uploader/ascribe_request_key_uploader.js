@@ -30,6 +30,7 @@ const AscribeRequestKeyUploader = (Uploader) => {
         requestKey(fileId) {
             const { onRequestKeyError, onRequestKeySuccess, requestKeyParams } = this.props;
 
+            //FIXME: could try with this.refs.uploader.getFiles()[fileId] instead
             const filename = this.refs.uploader.getUploader().getName(fileId);
             const uuid = this.refs.uploader.getUploader().getUuid(fileId);
 
