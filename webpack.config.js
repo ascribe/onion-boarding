@@ -24,13 +24,15 @@ const COMPATIBILITY = ['Chrome >= 30', 'Safari >= 6.1', 'Firefox >= 35', 'Opera 
 
 // Definitions injected into app
 const DEFINITIONS = {
-    'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') },
+    'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
 
-    'process.env': { API_URL: JSON.stringify(process.env.API_URL || 'https://staging.ascribe.io/api') },
-    'process.env': { APP_BASE_PATH: JSON.stringify(process.env.APP_BASE_PATH || '/') },
-    'process.env': { SERVER_URL: JSON.stringify(process.env.SERVER_URL || 'https://staging.ascribe.io/') },
+        API_URL: JSON.stringify(process.env.API_URL || 'https://staging.ascribe.io/api'),
+        APP_BASE_PATH: JSON.stringify(process.env.APP_BASE_PATH || '/'),
+        SERVER_URL: JSON.stringify(process.env.SERVER_URL || 'https://staging.ascribe.io/'),
 
-    'process.env': { S3_ACCESS_KEY: JSON.stringify(process.env.S3_ACCESS_KEY || '') }
+        S3_ACCESS_KEY: JSON.stringify(process.env.S3_ACCESS_KEY || '')
+    },
 };
 
 // Plugins
