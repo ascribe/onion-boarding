@@ -2,6 +2,7 @@
     'presets': ['es2015-no-commonjs', 'react'],
     'plugins': [
         'transform-object-assign',
+        'transform-object-rest-spread',
         'transform-react-display-name',
         'transform-runtime',
     ],
