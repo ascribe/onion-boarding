@@ -27,6 +27,7 @@ const DEFINITIONS = {
     'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') },
 
     'process.env': { API_URL: JSON.stringify(process.env.API_URL || 'https://staging.ascribe.io/api') },
+    'process.env': { APP_BASE_PATH: JSON.stringify(process.env.APP_BASE_PATH || '/') },
     'process.env': { SERVER_URL: JSON.stringify(process.env.SERVER_URL || 'https://staging.ascribe.io/') },
 
     'process.env': { S3_ACCESS_KEY: JSON.stringify(process.env.S3_ACCESS_KEY || '') }
