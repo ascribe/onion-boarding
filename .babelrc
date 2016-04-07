@@ -4,7 +4,10 @@
         'transform-object-assign',
         'transform-object-rest-spread',
         'transform-react-display-name',
-        'transform-runtime',
+        [ 'transform-runtime', {
+            'polyfill': false,
+            'regenerator': false
+        } ]
     ],
     'sourceMaps': true,
 

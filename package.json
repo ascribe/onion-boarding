@@ -55,6 +55,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.5.0",
+    "babel-runtime": "^6.6.1",
     "bootstrap-sass": "^3.3.6",
     "isomorphic-fetch": "^2.2.1",
     "react": "^0.14.7",
