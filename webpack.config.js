@@ -13,10 +13,10 @@ const PRODUCTION = process.env.NODE_ENV === 'production';
 const EXTRACT = process.env.NODE_ENV === 'extract';
 
 const PATHS = {
-    app: path.resolve(__dirname, 'src/app.js'),
-    build: path.resolve(__dirname, 'build'),
-    dist: path.resolve(__dirname, 'dist'),
-    nodeModules: path.resolve(__dirname, 'node_modules')
+    APP: path.resolve(__dirname, 'src/app.js'),
+    BUILD: path.resolve(__dirname, 'build'),
+    DIST: path.resolve(__dirname, 'dist'),
+    NODE_MODULES: path.resolve(__dirname, 'node_modules')
 };
 
 // Browsers to target when prefixing CSS.
@@ -103,12 +103,12 @@ const CSS_LOADER = combineLoaders([
 const config = {
     entry: [
         PRODUCTION || EXTRACT ? 'bootstrap-loader/extractStyles' : 'bootstrap-loader',
-        PATHS.app
+        PATHS.APP
     ],
 
     output: {
         filename: PRODUCTION ? 'bundle.min.js' : 'bundle.js',
-        path: PRODUCTION ? PATHS.dist : PATHS.build
+        path: PRODUCTION ? PATHS.DIST : PATHS.BUILD
     },
 
     debug: !PRODUCTION,
@@ -116,6 +116,13 @@ const config = {
     devtool: PRODUCTION ? '#source-map' : '#inline-source-map',
 
     resolve: {
+        // Dedupe any dependencies' polyfill, react, or react-css-modules dependencies
+        // FIXME: check if this is still necessary without npm link
+        alias: {
+            'core-js': path.resolve(PATHS.NODE_MODULES, 'core-js'),
+            'react': path.resolve(PATHS.NODE_MODULES, 'react'),
+            'react-css-modules': path.resolve(PATHS.NODE_MODULES, 'react-css-modules'),
+        },
         extensions: ['', '.js'],
         modules: ['node_modules'] // Don't use absolute path here to allow recursive matching
     },
@@ -126,7 +133,7 @@ const config = {
         loaders: [
             {
                 test: /\.js$/,
-                exclude: [PATHS.nodeModules],
+                exclude: [PATHS.NODE_MODULES],
                 loader: 'babel',
                 query: {
                     cacheDirectory: true
@@ -134,7 +141,7 @@ const config = {
             },
             {
                 test: /\.s[ac]ss$/,
-                exclude: [PATHS.nodeModules],
+                exclude: [PATHS.NODE_MODULES],
                 loader: PRODUCTION || EXTRACT ? ExtractTextPlugin.extract('style', CSS_LOADER)
                                               : `style!${CSS_LOADER}`
             }
