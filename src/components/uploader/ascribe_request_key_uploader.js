@@ -2,7 +2,7 @@ import React from 'react';
 
 import uploaderSpecExtender from 'ascribe-react-components/modules/uploader/utils/uploader_spec_extender';
 import { safeInvoke } from 'ascribe-react-components/modules/utils/general';
-import { getCsrfToken, makeCsrfHeader } from '../utils/csrf';
+import { getCsrfToken, makeCsrfHeader } from '../../utils/csrf';
 
 
 const { func, object, shape, string } = React.PropTypes;
@@ -22,7 +22,7 @@ const AscribeRequestKeyUploader = (Uploader) => {
             onRequestKeyError: func,
             onRequestKeySuccess: func,
 
-            request: object // FineUploader option that may be modified with a key param
+            objectProperties: object // FineUploader option that may be modified with a key param
 
             // All other props are passed unmodified to backing Uploader
         },
@@ -42,16 +42,14 @@ const AscribeRequestKeyUploader = (Uploader) => {
                     ...makeCsrfHeader(getCsrfToken()),
                     ...requestKeyParams.headers
                 },
-                credentials: 'include',
                 body: JSON.stringify({
                     'filename': filename,
                     'uuid': uuid,
                     ...requestKeyParams.body
                 })
             })
-            .then((res) => {
-                const resJson = res.json();
-
+            .then((res) => res.json())
+            .then((resJson) => {
                 safeInvoke(onRequestKeySuccess, resJson);
 
                 return resJson.key;
@@ -65,18 +63,18 @@ const AscribeRequestKeyUploader = (Uploader) => {
         },
 
         render() {
-            const { request } = this.props;
-            const {
+            const { objectProperties } = this.props;
+            let {
                 onRequestKeyError, // ignore
                 onRequestKeySuccess, // ignore
                 requestKeyParams, // ignore
                 ...uploaderProps
             } = this.props;
 
-            if (!request || !request.hasOwnProperty('key')) {
+            if (!objectProperties || !objectProperties.hasOwnProperty('key')) {
                 uploaderProps = Object.assign({}, uploaderProps, {
-                    request: {
-                        ...request,
+                    objectProperties: {
+                        ...objectProperties,
                         key: this.requestKey
                     }
                 });

@@ -1,13 +1,14 @@
 import React from 'react';
 
-import { CreateBlobUploader, uploaderSpecExtender } from 'ascribe-react-components/modules/uploader';
+import CreateBlobUploader from 'ascribe-react-components/modules/uploader/extended_uploaders/create_blob_uploader';
 
 import AppConstants from '../../constants/app_constants';
 
-import { getCsrfToken, makeCsrfHeader } from '../utils/csrf';
+import uploaderSpecExtender from 'ascribe-react-components/modules/uploader/utils/uploader_spec_extender';
+import { getCsrfToken, makeCsrfHeader } from '../../utils/csrf';
 
 
-const { func, object, string } = React.PropTypes;
+const { func, object, shape, string } = React.PropTypes;
 
 //FIXME: eventually this should be in a private components library...
 const AscribeBlobUploader = (Uploader) => {
@@ -17,11 +18,11 @@ const AscribeBlobUploader = (Uploader) => {
         displayName: 'AscribeBlobUploader',
 
         propTypes: {
-            createBlobParams: {
+            createBlobParams: shape({
                 body: object,
                 headers: object,
                 url: string.isRequired
-            },
+            }),
             onCreateBlobError: func,
             onCreateBlobSuccess: func
 
@@ -48,14 +49,14 @@ const AscribeBlobUploader = (Uploader) => {
                     ...makeCsrfHeader(getCsrfToken()),
                     ...createBlobParams.headers
                 },
-                credentials: 'include',
                 body: JSON.stringify({
                     'filename': file.name,
                     'key': file.key,
                     ...createBlobParams.body
                 })
             })
-            .then((res) => onCreateBlobSuccess(res.json()))
+            .then((res) => res.json())
+            .then(onCreateBlobSuccess)
             .catch(onCreateBlobError);
         },
 
@@ -69,6 +70,7 @@ const AscribeBlobUploader = (Uploader) => {
 
             return (
                 <BlobUploader
+                    ref="uploader"
                     {...uploaderProps}
                     handleBlobCreation={this.handleBlobCreation} />
             );

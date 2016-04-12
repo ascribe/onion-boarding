@@ -1,14 +1,17 @@
 import React from 'react';
 
-import { CustomHeaderOnChangeUploader, ReactS3FineUploader, uploaderSpecExtender } from 'ascribe-react-components/modules/uploader';
+import CustomHeaderOnChangeUploader from 'ascribe-react-components/modules/uploader/extended_uploaders/custom_header_on_change_uploader';
+import ReactS3FineUploader from 'ascribe-react-components/modules/uploader/react_s3_fine_uploader';
 
 import AscribeBlobUploader from './ascribe_blob_uploader';
 import AscribeRequestKeyUploader from './ascribe_request_key_uploader';
 
+import UploaderSupportedFeatures from 'ascribe-react-components/modules/uploader/constants/supported_features';
 import AppUrls from '../../constants/app_urls';
 import CsrfConstants from '../../constants/csrf_constants';
 import UploaderConstants from '../../constants/uploader_constants';
 
+import uploaderSpecExtender from 'ascribe-react-components/modules/uploader/utils/uploader_spec_extender';
 import { getCsrfToken, makeCsrfHeader } from '../../utils/csrf';
 
 
@@ -88,7 +91,7 @@ const AscribeUploader = React.createClass(uploaderSpecExtender({
             },
             uploadSuccess: {
                 params: {
-                    isBrowserPreviewCapable: FineUploader.supportedFeatures.imagePreviews
+                    isBrowserPreviewCapable: UploaderSupportedFeatures.imagePreviews
                 }
             }
         };
@@ -117,3 +120,5 @@ const AscribeUploader = React.createClass(uploaderSpecExtender({
         return (<Uploader {...this.props} />);
     }
 }));
+
+export default AscribeUploader;
