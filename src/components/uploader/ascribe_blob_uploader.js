@@ -6,6 +6,7 @@ import AppConstants from '../../constants/app_constants';
 
 import uploaderSpecExtender from 'ascribe-react-components/modules/uploader/utils/uploader_spec_extender';
 import { getCsrfToken, makeCsrfHeader } from '../../utils/csrf';
+import request from '../../utils/request';
 
 
 const { func, object, shape, string } = React.PropTypes;
@@ -41,7 +42,7 @@ const AscribeBlobUploader = (Uploader) => {
                 return Promise.resolve();
             }
 
-            return window.fetch(createBlobParams.url, {
+            return request(createBlobParams.url, {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',

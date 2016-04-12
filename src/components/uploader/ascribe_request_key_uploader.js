@@ -3,6 +3,7 @@ import React from 'react';
 import uploaderSpecExtender from 'ascribe-react-components/modules/uploader/utils/uploader_spec_extender';
 import { safeInvoke } from 'ascribe-react-components/modules/utils/general';
 import { getCsrfToken, makeCsrfHeader } from '../../utils/csrf';
+import request from '../../utils/request';
 
 
 const { func, object, shape, string } = React.PropTypes;
@@ -34,7 +35,7 @@ const AscribeRequestKeyUploader = (Uploader) => {
             const filename = this.refs.uploader.getUploader().getName(fileId);
             const uuid = this.refs.uploader.getUploader().getUuid(fileId);
 
-            return window.fetch(requestKeyParams.url, {
+            return request(requestKeyParams.url, {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
