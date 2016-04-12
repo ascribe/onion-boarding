@@ -12,7 +12,7 @@ const PORT = process.env.DEMO_PORT || 3000;
 
 // Manipulate config for demo server
 // Only use demo app for entry
-config.entry = [path.resolve(__dirname, 'demo/app')];
+config.entry = ['bootstrap-loader', path.resolve(__dirname, 'demo/app')];
 
 // Enable hot reloading if on demo mode
 if (process.env.NODE_ENV === 'demo') {
