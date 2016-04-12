@@ -1,6 +1,7 @@
-const CsrfConstants = {
-    CSRF_COOKIE_NAME: 'csrftoken2',
-    CSRF_CUSTOM_HEADER_NAME: 'X-CSRFToken'
-};
+export const CSRF_COOKIE_NAME = 'csrftoken2';
+export const CSRF_CUSTOM_HEADER_NAME = 'X-CSRFToken';
 
-export default CsrfConstants;
+export default {
+    CSRF_COOKIE_NAME,
+    CSRF_CUSTOM_HEADER_NAME
+};
