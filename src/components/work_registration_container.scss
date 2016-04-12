@@ -1,0 +1,17 @@
+.layout-container {
+    min-height: 60%; /*FIXME*/
+    position: relative;
+    top: 7%; /*FIXME*/
+
+    border: 1px red solid;
+}
+
+.drag-and-drop-container {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100vw;
+
+    border: 1px green solid;
+}

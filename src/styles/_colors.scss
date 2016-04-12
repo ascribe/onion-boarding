@@ -1,8 +1,13 @@
 @import '~ascribe-react-components/styles/colors';
 
+$onionboarding-colors--background: #EFEFEF;
+$onionboarding-colors--background-secondary: white;
 $onionboarding-colors--foreground: $ascribe-colors--dark-blue;
 $onionboarding-colors--highlight: $ascribe-colors--pink;
+
 $onionboarding-colors--text-base: black;
 $onionboarding-colors--text-danger: $ascribe-colors--text-danger;
+$onionboarding-colors--text-highlight: white;
 $onionboarding-colors--text-primary: $ascribe-colors--dark-blue;
+$onionboarding-colors--text-secondary: $ascribe-colors--pink;
 $onionboarding-colors--text-subtext: rgb(150, 150, 150);

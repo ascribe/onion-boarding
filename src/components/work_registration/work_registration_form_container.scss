@@ -1,0 +1,19 @@
+.background {
+    composes: clearfix from global;
+
+    background: $onionboarding-colors--background;
+    height: 350px; /*FIXME*/
+    position: relative;
+    text-align: initial;
+    width: 850px;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: $onionboarding-colors--text-subtext;
+    font-size: 0.9em;
+    left: 0;
+    position: absolute;
+    top: -20px; /*FIXME*/
+}

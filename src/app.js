@@ -11,6 +11,8 @@ import ReactDOM from 'react-dom';
 import Background from './components/background';
 import Header from './components/header';
 
+import WorkRegistrationContainer from './components/work_registration_container';
+
 // Import global app styles
 import styles from './app.scss';
 
@@ -43,6 +45,11 @@ const OnionboardingApp = React.createClass({
         return (
             <Background>
                 <Header hide={this.state.hasFile} />
+                <WorkRegistrationContainer
+                    onReset={this.onReset}
+                    hasFile={this.state.hasFile}
+                    onSelectFile={this.onSelectFile}
+                    onUploadError={this.onUploadError} />
             </Background>
         );
     }
