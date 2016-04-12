@@ -9,6 +9,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Background from './components/background';
+import Header from './components/header';
 
 // Import global app styles
 import styles from './app.scss';
@@ -41,6 +42,7 @@ const OnionboardingApp = React.createClass({
     render() {
         return (
             <Background>
+                <Header hide={this.state.hasFile} />
             </Background>
         );
     }

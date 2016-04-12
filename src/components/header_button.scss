@@ -1,0 +1,22 @@
+.header {
+    composes: base from 'ascribe-react-components/modules/buttons/button.scss';
+
+    background-color: transparent;
+    border-color: white;
+    color: white;
+    text-transform: uppercase;
+
+    @include ascribe-button--activated {
+        background-color: transparent;
+        border-color: white;
+        color: white;
+    }
+
+    @include ascribe-button--disabled {
+        background-color: transparent;
+        border-color: white;
+        color: white;
+    }
+
+    /* Don't need to use the button size-exploder since we are only using one size for the header */
+}
