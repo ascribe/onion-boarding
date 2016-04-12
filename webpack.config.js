@@ -119,6 +119,7 @@ const config = {
         // Dedupe any dependencies' polyfill, react, or react-css-modules dependencies
         // FIXME: check if this is still necessary without npm link
         alias: {
+            'babel-runtime': path.resolve(PATHS.NODE_MODULES, 'babel-runtime'),
             'core-js': path.resolve(PATHS.NODE_MODULES, 'core-js'),
             'react': path.resolve(PATHS.NODE_MODULES, 'react'),
             'react-css-modules': path.resolve(PATHS.NODE_MODULES, 'react-css-modules'),
