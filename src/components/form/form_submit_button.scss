@@ -1,0 +1,30 @@
+/* Don't need full button-exploder as we only use the default size and wide */
+.form {
+    composes: base from 'ascribe-react-components/modules/buttons/button.scss';
+    background-color: $onionboarding-colors--highlight;
+    border-color: $onionboarding-colors--highlight;
+    color: $onionboarding-colors--text-highlight;
+    font-weight: $onboarding--font-weight-light;
+    opacity: 0.8;
+
+    @include ascribe-button--activated {
+        background-color: $onionboarding-colors--highlight;
+        border-color: $onionboarding-colors--highlight;
+        color: $onionboarding-colors--text-highlight;
+        opacity: 1;
+    }
+
+    @include ascribe-button--disabled {
+        background-color: $onionboarding-colors--highlight;
+        border-color: $onionboarding-colors--highlight;
+        color: $onionboarding-colors--text-highlight;
+        opacity: 0.6;
+    }
+}
+
+.form-wide {
+    composes: form;
+    composes: wide from 'ascribe-react-components/modules/buttons/button.scss';
+
+    font-size: 1em;
+}
