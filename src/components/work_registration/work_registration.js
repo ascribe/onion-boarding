@@ -29,7 +29,6 @@ const WorkRegistration = React.createClass({
         const validFiles = this.props.uploaderFiles.filter(this.selectedFileFilter);
 
         if (validFiles.length > 1) {
-            //FIXME: add sentry logging
             console.logSentry('More than one valid file was available in the uploader, selecting ' +
                               'only the first one');
         }

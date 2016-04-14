@@ -5,6 +5,9 @@ import 'core-js/stage/4';
 
 import 'isomorphic-fetch';
 
+// Bootstrap global app dependencies
+import './utils/error_handling';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 

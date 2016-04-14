@@ -17,7 +17,6 @@ export default function request(url, config) {
             return res;
         })
         .catch((err) => {
-            // FIXME: add sentry logging
             console.logSentry(`Request (${config.method || 'get'}) to ${url} failed with ` +
                               ((err instanceof Error) ? `error: ${err}`
                                                       : `status: ${err.status} (${err.statusText})`));
