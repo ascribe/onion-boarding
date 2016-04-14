@@ -2,21 +2,28 @@
     composes: base from 'ascribe-react-components/modules/buttons/button.scss';
 
     background-color: transparent;
-    border-color: white;
-    color: white;
+    border-color: $onionboarding-colors--background-secondary;
+    color: $onionboarding-colors--text-highlight;
+    font-size: 1.1em;
+    padding: 7px 18px;
     text-transform: uppercase;
 
     @include ascribe-button--activated {
-        background-color: transparent;
-        border-color: white;
-        color: white;
+        background-color: $onionboarding-colors--background-secondary;
+        border-color: $onionboarding-colors--background-secondary;
+        color: transparent;
     }
 
     @include ascribe-button--disabled {
         background-color: transparent;
-        border-color: white;
-        color: white;
+        border-color: $onionboarding-colors--background-secondary;
+        color: $onionboarding-colors--text-highlight;
     }
 
     /* Don't need to use the button size-exploder since we are only using one size for the header */
+}
+
+/* Remove double border on adjacent header buttons */
+.header + .header {
+    border-left-width: 0;
 }

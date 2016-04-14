@@ -1,24 +1,27 @@
 import React from 'react';
+import CssModules from 'react-css-modules';
 
-import ButtonList from 'ascribe-react-components/modules/buttons/button_list';
+import Grouping from 'ascribe-react-components/modules/ui/grouping';
 
 import HeaderButton from './header_button';
 
 import AppUrls from '../constants/app_urls';
 import { getLangText } from '../utils/lang';
 
+import styles from './header.scss';
+
 
 const Header = ({ hide }) => (
-    <div style={{ visibility: hide ? 'hidden' : 'visible' }}>
-        <ButtonList pull="right">
+    <div style={{ visibility: hide ? 'hidden' : 'visible' }} styleName="header">
+        <Grouping className="pull-right" margin={0}>
             <HeaderButton href={AppUrls.APP_LOGIN}>
                 {getLangText('sign in')}
             </HeaderButton>
             <HeaderButton href={AppUrls.APP_SIGNUP}>
                 {getLangText('sign up')}
             </HeaderButton>
-        </ButtonList>
+        </Grouping>
     </div>
 );
 
-export default Header;
+export default CssModules(Header, styles);
