@@ -14,3 +14,12 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-weight: $onionboarding--font-weight-light;
 }
+
+button {
+    background: none;
+    border: none;
+}
+
+:global(.btn) {
+    font-weight: $onionboarding--font-weight-light;
+}

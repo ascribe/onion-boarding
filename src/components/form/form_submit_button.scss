@@ -4,7 +4,6 @@
     background-color: $onionboarding-colors--highlight;
     border-color: $onionboarding-colors--highlight;
     color: $onionboarding-colors--text-highlight;
-    font-weight: $onboarding--font-weight-light;
     opacity: 0.8;
 
     @include ascribe-button--activated {
