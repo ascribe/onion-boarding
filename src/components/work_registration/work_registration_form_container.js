@@ -6,13 +6,16 @@ import WorkRegistrationHeader from './work_registration_header';
 
 import { getLangText } from '../../utils/lang';
 
+import BackArrowSvg from '../../styles/icons/back_arrow_svg.svg';
+
 import styles from './work_registration_form_container.scss';
 
 
-const WorkRegistrationBackButton = CssModules((props) => (
-    <button {...props} styleName="back-button" />
-), styles);
-
+const WorkRegistrationBackButton = CssModules(({ children, ...buttonProps }) => (
+    <button {...buttonProps} styleName="back-button">
+        <BackArrowSvg aria-hidden height="7" styleName="back-arrow-icon" />
+        {children}
+    </button>
 ), styles);
 
 WorkRegistrationBackButton.displayName = 'WorkRegistrationBackButton';
