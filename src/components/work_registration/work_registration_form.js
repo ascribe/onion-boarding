@@ -26,24 +26,27 @@ const WorkRegistrationErrorMessage = CssModules(({ errors, isCreator }) => {
     let errorMessage = null;
 
     if (!isCreator) {
-        errorMessage = (
-            <span styleName="error-message-centered">
-                {getLangText("If you don't have any creations to register at the moment, you can " +
-                             'still ')}
-                <a href={AppUrls.APP_SIGNUP}>{getLangText('sign up')}</a>
-                {getLangText(' now for an account.')}
-            </span>
-        );
+        errorMessage = [
+            getLangText("If you don't have any creations to register at the moment, you can still "),
+            (
+                <a key="signup-link" href={AppUrls.APP_SIGNUP}>
+                    {getLangText('sign up')}
+                </a>
+            ),
+            getLangText(' now for an account.')
+        ];
     } else if (errors && Object.keys(errors).length) {
-        errorMessage = (
-            <span styleName="error-message-centered">
-                {getLangText('Please fill in all fields to register your Artwork')}
-            </span>
-        );
+        errorMessage = getLangText('Please fill in all fields to register your Artwork');
     }
 
     // If there's no error message to display, still render the element as a height placeholder
-    return (<p styleName="error-message">{errorMessage}</p>);
+    return (
+        <p styleName="error-message">
+            <span styleName="error-message-centered">
+                {errorMessage}
+            </span>
+        </p>
+    );
 }, styles);
 
 WorkRegistrationErrorMessage.displayName = 'WorkRegistrationErrorMessage';

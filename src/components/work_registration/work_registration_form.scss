@@ -37,7 +37,7 @@
         // Make checkbox smaller and centered
         font-size: 13px;
         height: 14px;
-        line-height: 0.9;
+        line-height: 1;
         width: 14px;
     }
 }
@@ -45,11 +45,14 @@
 .error-message {
     color: $onionboarding-colors--text-danger;
     display: table;
+    font-size: 0.9em;
     height: 40px;
-    margin: 8px 0;
+    margin: 8px 3px;
 
     a {
         color: $onionboarding-colors--text-danger;
+        font-weight: normal;
+        margin: 0 2px;
         text-decoration: underline;
     }
 }
