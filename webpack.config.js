@@ -41,13 +41,13 @@ const plugins = [
     new webpack.NoErrorsPlugin()
 ];
 
-const extractPlugins = [
+const EXTRACT_PLUGINS = [
     new ExtractTextPlugin(PRODUCTION ? 'styles.min.css' : 'styles.css', {
         allChunks: true
     })
 ];
 
-const prodPlugins = [
+const PROD_PLUGINS = [
     new webpack.optimize.UglifyJsPlugin({
         compress: {
             warnings: false
@@ -63,11 +63,11 @@ const prodPlugins = [
 ];
 
 if (EXTRACT || PRODUCTION) {
-    plugins.push(...extractPlugins);
+    plugins.push(...EXTRACT_PLUGINS);
 }
 
 if (PRODUCTION) {
-    plugins.push(...prodPlugins);
+    plugins.push(...PROD_PLUGINS);
 }
 
 // Modules
@@ -83,9 +83,7 @@ const CSS_LOADER = combineLoaders([
             sourceMap: true
         }
     },
-    {
-        loader: 'postcss'
-    },
+    { loader: 'postcss' },
     {
         loader: 'sass',
         query: {
@@ -94,9 +92,14 @@ const CSS_LOADER = combineLoaders([
             sourceMap: true
         }
     },
-    {
-        loader: 'sass-resources'
-    }
+    { loader: 'sass-resources' }
+]);
+
+const SVG_LOADER = combineLoaders([
+    { loader: 'babel' },
+    { loader: 'svg-react' },
+    // Can't supply the query using the query object as json formats aren't supported
+    { loader: 'image-webpack?{ svgo: { plugins: [{ removeTitle: true }, { cleanupIDs: false }] } }' }
 ]);
 
 
@@ -145,6 +148,11 @@ const config = {
                 exclude: [PATHS.NODE_MODULES],
                 loader: PRODUCTION || EXTRACT ? ExtractTextPlugin.extract('style', CSS_LOADER)
                                               : `style!${CSS_LOADER}`
+            },
+            {
+                test: /\.svg$/,
+                exclude: [PATHS.NODE_MODULES],
+                loader: SVG_LOADER
             }
         ]
     },
