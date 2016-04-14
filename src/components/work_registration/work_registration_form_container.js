@@ -13,16 +13,13 @@ const WorkRegistrationBackButton = CssModules((props) => (
     <button {...props} styleName="back-button" />
 ), styles);
 
-const WorkRegistrationFormBackground = CssModules(({ children }) => (
-    <div styleName="background">{children}</div>
 ), styles);
 
 WorkRegistrationBackButton.displayName = 'WorkRegistrationBackButton';
-WorkRegistrationFormBackground.displayName = 'WorkRegistrationFormBackground';
 
 
 const WorkRegistrationFormContainer = ({ onFormSubmit, onReset, selectedFile }) => (
-    <WorkRegistrationFormBackground>
+    <div styleName="container">
         <WorkRegistrationBackButton onClick={onReset}>
             {getLangText('Start over')}
         </WorkRegistrationBackButton>
@@ -30,9 +27,9 @@ const WorkRegistrationFormContainer = ({ onFormSubmit, onReset, selectedFile }) 
         <WorkRegistrationForm
             onSubmit={onFormSubmit}
             selectedFile={selectedFile} />
-    </WorkRegistrationFormBackground>
+    </div>
 );
 
 WorkRegistrationFormContainer.displayName = 'WorkRegistrationFormContainer';
 
-export default WorkRegistrationFormContainer;
+export default CssModules(WorkRegistrationFormContainer, styles);

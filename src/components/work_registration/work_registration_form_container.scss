@@ -1,11 +1,11 @@
-.background {
+.container {
     composes: clearfix from global;
 
     background: $onionboarding-colors--background;
-    height: 350px; /*FIXME*/
+    height: $onionboarding--main-interactive-area-height;
     position: relative;
     text-align: initial;
-    width: 850px;
+    width: $onionboarding--main-interactive-area-width;
 }
 
 .back-button {

@@ -51,6 +51,7 @@ const WorkRegistrationContainer = React.createClass({
                     <UploadDragAndDropArea
                         ref="uploader"
                         disabled={hasFile}
+                        styleName="main-interaction-area"
                         uploaderProps={{
                             multiple: false,
                             onDeleteComplete: this.onDeleteComplete,

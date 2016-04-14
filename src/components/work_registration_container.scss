@@ -15,3 +15,9 @@
 
     border: 1px green solid;
 }
+
+/* Limit size of the interactive area for dynamically sized views (ie. uploader) */
+.main-interaction-area {
+    max-height: $onionboarding--main-interactive-area-height;
+    max-width: $onionboarding--main-interactive-area-width;
+}
