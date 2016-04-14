@@ -1,7 +1,13 @@
-$onboarding--fallback-font: "Helvetica Neue", Helvetica, sans-serif;
-$onboarding--fallback-font-size-base: 13.5px;
+// Dimensions Specifies the max dimensions of the main interactive parts of onionboarding
+// (ie. uploader and form)
+$onionboarding--main-interactive-area-height: 365px;
+$onionboarding--main-interactive-area-width: 850px;
 
-$onboarding--gibson-font: "canada-type-gibson", sans-serif;
-$onboarding--gibson-font-size-base: 14px;
+// Fonts
+$onionboarding--fallback-font: "Helvetica Neue", Helvetica, sans-serif;
+$onionboarding--fallback-font-size-base: 13.5px;
 
-$onboarding--font-weight-light: 300;
+$onionboarding--gibson-font: "canada-type-gibson", sans-serif;
+$onionboarding--gibson-font-size-base: 14px;
+
+$onionboarding--font-weight-light: 300;
