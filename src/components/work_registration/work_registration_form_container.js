@@ -33,6 +33,4 @@ const WorkRegistrationFormContainer = ({ onFormSubmit, onReset, selectedFile }) 
     </div>
 );
 
-WorkRegistrationFormContainer.displayName = 'WorkRegistrationFormContainer';
-
 export default CssModules(WorkRegistrationFormContainer, styles);

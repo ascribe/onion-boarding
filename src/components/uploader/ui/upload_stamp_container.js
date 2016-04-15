@@ -32,6 +32,10 @@ UploadStampButton.displayName = 'UploadStampButton';
 UploadStampHeader.displayName = 'UploadStampHeader';
 
 
+const contextTypes = {
+    handleSelectFiles: func.isRequired
+};
+
 const UploadStampContainer = ({ selectedFile }, { handleSelectFiles }) => (
     <div styleName="container">
         <UploadStampHeader />
@@ -45,9 +49,6 @@ const UploadStampContainer = ({ selectedFile }, { handleSelectFiles }) => (
     </div>
 );
 
-UploadStampContainer.displayName = 'UploadStampContainer';
-UploadStampContainer.contextTypes = {
-    handleSelectFiles: func.isRequired
-};
+UploadStampContainer.contextTypes = contextTypes;
 
 export default CssModules(UploadStampContainer, styles);

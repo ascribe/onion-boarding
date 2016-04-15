@@ -61,6 +61,4 @@ const UploadFileStatus = ({ file }) => {
     );
 };
 
-UploadFileStatus.displayName = 'UploadFileStatus';
-
 export default CssModules(UploadFileStatus, styles);

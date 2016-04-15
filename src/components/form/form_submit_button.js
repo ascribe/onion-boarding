@@ -10,6 +10,4 @@ const FormSubmitButton = (props) => (
     <Button {...props} classType="form" styles={styles} wide />
 );
 
-FormSubmitButton.displayName = 'FormSubmitButton';
-
 export default CssModules(FormSubmitButton, styles);

@@ -8,6 +8,4 @@ const PropertySubtextFooter = (props) => (
     <p {...props} styleName="footer" />
 );
 
-PropertySubtextFooter.displayName = 'PropertySubtextFooter';
-
 export default CssModules(PropertySubtextFooter, styles);

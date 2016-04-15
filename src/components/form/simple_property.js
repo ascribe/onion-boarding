@@ -35,4 +35,4 @@ const SimpleProperty = React.createClass(propertySpecExtender({
     }
 }));
 
-export default CssModules(SimpleProperty, styles);
+export default SimpleProperty;

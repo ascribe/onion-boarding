@@ -10,6 +10,4 @@ const HeaderButton = (props) => (
     <Button {...props} classType="header" styles={styles} />
 );
 
-HeaderButton.displayName = 'HeaderButton';
-
 export default CssModules(HeaderButton, styles);
