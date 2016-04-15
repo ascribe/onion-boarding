@@ -20,6 +20,8 @@ styles:
 
     # Selected stylesheets (and ascribe-react-component dependencies)
     buttons: true
+    component-animations: true
     forms: true
+    popovers: true
 
 scripts: false
