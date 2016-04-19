@@ -111,7 +111,7 @@ const WorkRegistrationForm = React.createClass({
                     onChange={this.onCreatorCheckboxChange}
                     overrideFormDefaults>
                     <InputCheckbox
-                        defaultValue={isCreator}
+                        defaultChecked
                         label={getLangText('Yes, I am the creator of this file')}
                         required
                         styleName="checkbox-input" />

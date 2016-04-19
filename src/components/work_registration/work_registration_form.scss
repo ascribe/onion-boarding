@@ -33,8 +33,8 @@
 .checkbox-input {
     color: $onionboarding-colors--text-base;
 
+    // Make checkbox smaller and centered
     &:before {
-        // Make checkbox smaller and centered
         font-size: 13px;
         height: 14px;
         line-height: 1;
@@ -47,12 +47,12 @@
     display: table;
     font-size: 0.9em;
     height: 40px;
-    margin: 8px 3px;
+    margin: 0.5em 0.2em;
 
     a {
         color: $onionboarding-colors--text-danger;
         font-weight: normal;
-        margin: 0 2px;
+        margin: 0 0.1em;
         text-decoration: underline;
     }
 }

@@ -9,7 +9,7 @@
 }
 
 .header-text {
-    left: 1.5em;
+    left: 35px;
     margin: 0;
     position: absolute;
     transform: translateY(-55%);
@@ -23,7 +23,7 @@
 .emphasis {
     color: $onionboarding-colors--text-secondary;
     font-size: 2em;
-    margin: -5px 0; /* Move other text vertically closer */
+    margin: -0.1em 0; /* Move other text vertically closer */
 }
 
 .subtext {

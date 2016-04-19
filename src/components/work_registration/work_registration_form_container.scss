@@ -24,4 +24,10 @@
     padding: 0;
     position: absolute;
     top: -22px; /* Move the back button above the background */
+
+    &:active,
+    &:focus,
+    &:hover {
+        opacity: 0.8;
+    }
 }
