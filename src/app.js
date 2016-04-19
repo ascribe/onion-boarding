@@ -17,7 +17,8 @@ import Header from './components/header';
 import WorkRegistrationContainer from './components/work_registration_container';
 
 // Import global app styles
-import styles from './app.scss';
+import './app_global.scss';
+
 
 const OnionboardingApp = React.createClass({
     getInitialState() {
