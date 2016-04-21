@@ -1,0 +1,65 @@
+$cube-color--front-base: rgb(23, 64, 93);
+$cube-color--top-base: rgb(1, 108, 164);
+$cube-color--side-base: rgb(0, 44, 60);
+
+.container {
+    display: inline-block;
+    height: 115px;
+    position: relative;
+    width: 145px; // If changed, make sure to change BLOCK_WIDTH in block.js
+}
+
+/*
+ * Side faces.
+ *
+ * The top and right side are transformed through rotations and skews to achieve the desired 3d
+ * effect. Their transform values were magically determined through this process: http://imgur.com/gallery/Q3cUg29.
+ */
+.face {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+.front {
+    composes: face;
+
+    background-color: $cube-color--front-base;
+}
+
+.top {
+    composes: face;
+
+    background-color: $cube-color--top-base;
+    transform: translateX(31.1px)
+               translateY(-85.8px)
+               rotateX(60.5deg)
+               skewX(-28.3deg);
+}
+
+.side {
+    composes: face;
+
+    background-color: $cube-color--side-base;
+    transform: translateX(103.5px)
+               translateY(-28.5px)
+               rotateY(64.7deg)
+               skewY(-21.2deg);
+}
+
+/*
+ * Cube shadow
+ */
+.container:before {
+    backface-visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.5); /*FIXME*/
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transform: translateX(188px)
+               translateY(19.6px)
+               rotateX(49deg)
+               skewX(-73deg);
+    width: 100%;
+}

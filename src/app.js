@@ -13,6 +13,7 @@ import ReactDOM from 'react-dom';
 import CssModules from 'react-css-modules';
 
 import Header from './components/header';
+import BlocksConveyor from './components/blocks/blocks_conveyor';
 import WorkRegistrationContainer from './components/work_registration_container';
 
 // Import global app styles
@@ -25,8 +26,8 @@ import styles from './app.scss';
 const OnionboardingApp = CssModules(React.createClass({
     getInitialState() {
         return {
-            hasFile: false,
-            fileHash: null
+            fileHash: null,
+            selectedFile: null
         };
     },
 
@@ -36,26 +37,30 @@ const OnionboardingApp = CssModules(React.createClass({
 
     onSelectFile(file) {
         this.setState({
-            hasFile: true
+            selectedFile: file
         });
 
     },
 
     onUploadError() {
         this.setState({
-            hasFile: false
+            selectedFile: null
         });
     },
 
     render() {
+        const { fileHash, selectedFile } = this.state;
+        const hasFile = !!selectedFile;
+
         return (
             <div styleName="app">
-                <Header hide={this.state.hasFile} />
+                <Header hide={hasFile} />
                 <WorkRegistrationContainer
                     onReset={this.onReset}
-                    hasFile={this.state.hasFile}
+                    hasFile={hasFile}
                     onSelectFile={this.onSelectFile}
                     onUploadError={this.onUploadError} />
+                <BlocksConveyor fileHash={fileHash} fileName={selectedFile ? selectedFile.name : null} />
             </div>
         );
     }
