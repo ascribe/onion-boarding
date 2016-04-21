@@ -11,7 +11,7 @@ import styles from './work_registration_header.scss';
 
 const WorkRegistrationHeader = () => {
     const popover = (
-        <Popover id="help-text-popover" title={getLangText('Sample title')}>
+        <Popover id="help-text-popover">
             {getLangText('Sample explainer text...')}
         </Popover>
     );
