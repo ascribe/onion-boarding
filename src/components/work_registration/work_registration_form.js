@@ -6,6 +6,8 @@ import InputCheckbox from 'ascribe-react-components/modules/form/inputs/input_ch
 
 import FileStatus from 'ascribe-react-components/modules/uploader/constants/file_status';
 
+import Spinner from '../spinner';
+
 import FormSubmitButton from '../form/form_submit_button';
 import PropertySubtextFooter from '../form/property_subtext_footer';
 import SimpleProperty from '../form/simple_property';
@@ -95,7 +97,11 @@ const WorkRegistrationForm = React.createClass({
                     </FormSubmitButton>
                 )}
                 buttonEdited={null}
-                buttonSubmitting={/*FIXME*/null}
+                buttonSubmitting={(
+                    <FormSubmitButton disabled>
+                        {getLangText('Generating Certificate')} <Spinner className={styles['submit-spinner']} />
+                    </FormSubmitButton>
+                )}
                 customPropertyTypes={[SimpleProperty]}
                 disabled={!isCreator}
                 onSubmit={this.onSubmit}
