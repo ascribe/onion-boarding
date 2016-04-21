@@ -40,7 +40,8 @@ const BlocksGroup = Dimensions()(CssModules(({ blockDetails: { hash, name } = {}
                     ii === 1 && (hash || name) ? (
                         <BlockDetails hash={hash} name={name} />
                     ) : null
-                } />
+                }
+                style={{ zIndex: ii }} />
         );
     }
 

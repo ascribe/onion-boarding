@@ -10,6 +10,7 @@ import './utils/error_handling';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Bowser from 'bowser';
 import CssModules from 'react-css-modules';
 
 import Header from './components/header';
@@ -52,8 +53,14 @@ const OnionboardingApp = CssModules(React.createClass({
         const { fileHash, selectedFile } = this.state;
         const hasFile = !!selectedFile;
 
+        // Turn the browser name from Bowser into a lowercase hypen delimited string for use as a
+        // CSS class. See the possible browser names here:
+        // https://github.com/ded/bowser/blob/master/src/bowser.js
+        const browserName = typeof Bowser.name === 'string' ?
+                                Bowser.name.toLowerCase().replace(/ /g, '-') : '';
+
         return (
-            <div styleName="app">
+            <div className={browserName} styleName="app">
                 <Header hide={hasFile} />
                 <WorkRegistrationContainer
                     onReset={this.onReset}

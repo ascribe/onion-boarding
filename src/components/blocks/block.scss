@@ -29,6 +29,7 @@ $cube-color--side-base: rgb(0, 44, 60);
 
 .top {
     composes: face;
+    composes: transform-fix from '../../styles/utils.scss';
 
     background-color: $cube-color--top-base;
     transform: translateX(31.1px)
@@ -39,6 +40,7 @@ $cube-color--side-base: rgb(0, 44, 60);
 
 .side {
     composes: face;
+    composes: transform-fix from '../../styles/utils.scss';
 
     background-color: $cube-color--side-base;
     transform: translateX(103.5px)
@@ -52,7 +54,6 @@ $cube-color--side-base: rgb(0, 44, 60);
  */
 .container:before {
     backface-visibility: hidden;
-    background-color: rgba(0, 0, 0, 0.5); /*FIXME*/
     content: '';
     display: block;
     height: 100%;
@@ -62,4 +63,29 @@ $cube-color--side-base: rgb(0, 44, 60);
                rotateX(49deg)
                skewX(-73deg);
     width: 100%;
+    z-index: -1; /* Necessary for Safari to create correct stacking contexts */
+
+    /**
+     * There seems to be significant problems with rendering these cube transforms in some browsers.
+     * Safari, for example, doesn't like any of this at all and produces really weird rendering
+     * issues when this shadow is there (but also doesn't like it when the shadow isn't).
+     *
+     * Because of these issues, we've left this pseudo element around without any visible styling
+     * as it seems to help render the actual cubes for some of these broken browsers, but in the
+     * browsers that support it, we add the background styling to show the shadow.
+     *
+     * FIXME: Test with IE/Edge
+     */
+    :global(.chrome) &,
+    :global(.firefox) & {
+        background-color: rgba(0, 0, 0, 0.5); /*FIXME*/
+    }
+
+    /**
+     * For some versions of chrome, the backface-visibility trick doesn't seem to smooth the jagged
+     * edges, but adding an outline makes it better
+     */
+    :global(.chrome) & {
+        outline: 1px solid rgba(0, 0, 0, 0.5); /*FIXME*/
+    }
 }
