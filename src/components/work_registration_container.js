@@ -46,33 +46,31 @@ const WorkRegistrationContainer = React.createClass({
         const { onReset, hasFile, onSelectFile, onUploadError } = this.props;
 
         return (
-            <div styleName="layout-container">
-                <div styleName="drag-and-drop-container">
-                    <UploadDragAndDropArea
-                        ref="uploader"
-                        disabled={hasFile}
-                        styleName="main-interaction-area"
-                        uploaderProps={{
-                            multiple: false,
-                            onDeleteComplete: this.onDeleteComplete,
-                            onError: onUploadError,
-                            onSubmitted: onSelectFile,
-                            onValidationError: this.onUploaderValidationError,
-                            requestKeyParams: {
-                                body: {
-                                    category: UploaderConstants.FILE_CATEGORY.DIGITAL_WORK
-                                },
-                                url: AppUrls.S3_KEY
+            <div styleName="drag-and-drop-container">
+                <UploadDragAndDropArea
+                    ref="uploader"
+                    disabled={hasFile}
+                    styleName="main-interaction-area"
+                    uploaderProps={{
+                        multiple: false,
+                        onDeleteComplete: this.onDeleteComplete,
+                        onError: onUploadError,
+                        onSubmitted: onSelectFile,
+                        onValidationError: this.onUploaderValidationError,
+                        requestKeyParams: {
+                            body: {
+                                category: UploaderConstants.FILE_CATEGORY.DIGITAL_WORK
                             },
-                            signature: {
-                                customHeaders: makeCsrfHeader(getCsrfToken()),
-                                endpoint: AppUrls.S3_SIGNATURE
-                            }
-                        }}
-                        uploaderType={AscribeUploader}>
-                        <WorkRegistration onReset={onReset} />
-                    </UploadDragAndDropArea>
-                </div>
+                            url: AppUrls.S3_KEY
+                        },
+                        signature: {
+                            customHeaders: makeCsrfHeader(getCsrfToken()),
+                            endpoint: AppUrls.S3_SIGNATURE
+                        }
+                    }}
+                    uploaderType={AscribeUploader}>
+                    <WorkRegistration onReset={onReset} />
+                </UploadDragAndDropArea>
             </div>
         );
     }

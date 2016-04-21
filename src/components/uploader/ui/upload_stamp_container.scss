@@ -1,10 +1,13 @@
 .container {
     composes: clearfix from global;
+
+    padding-top: 5%;
 }
 
 .stamp-container {
     display: inline-block;
-    margin-left: 10%;
+    margin-left: 12%;
+    margin-right: 10px;
     text-align: center;
 }
 
@@ -33,11 +36,11 @@
     composes: pull-right from global;
 
     color: $onionboarding-colors--text-highlight;
-    font-size: 2.5em;
+    font-size: 3em;
     margin-right: 10%;
     text-align: center;
     text-shadow: 0px 2px 3px $onionboarding-colors--foreground;
-    width: 50%;
+    width: 55%;
 
     /* Center responsive multiline text by translating higher when element is larger */
     margin-top: 150px;

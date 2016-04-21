@@ -1,19 +1,9 @@
-.layout-container {
-    min-height: 60%; /*FIXME*/
-    position: relative;
-    top: 4em; /*FIXME*/
-
-    border: 1px red solid;
-}
-
 .drag-and-drop-container {
     position: absolute;
     text-align: center;
-    top: 50%;
+    top: 40%; /* Place slightly off-center to leave room for blocks */
     transform: translateY(-50%);
     width: 100vw;
-
-    border: 1px green solid;
 }
 
 /* Limit size of the interactive area for dynamically sized views (ie. uploader) */
