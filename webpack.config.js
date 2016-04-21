@@ -99,6 +99,19 @@ const CSS_LOADER = combineLoaders([
     { loader: 'sass-resources' }
 ]);
 
+const PNG_LOADER = combineLoaders([
+    {
+        loader: 'url',
+        query: {
+            mimetype: 'image/png'
+        }
+    },
+    // Can't supply the query using the query object as json formats aren't supported
+    // Let's use the super awesome optimization levels for now, since we're not going to be adding
+    // too many png assets for pngquant and optipng to crunch.
+    { loader: 'image-webpack?{ optimizationLevel: 7, pngquant: { quality: "65-90", speed: 1 } }' }
+]);
+
 const SVG_LOADER = combineLoaders([
     { loader: 'babel' },
     { loader: 'svg-react' },
@@ -152,6 +165,11 @@ const config = {
                 exclude: [PATHS.NODE_MODULES],
                 loader: PRODUCTION || EXTRACT ? ExtractTextPlugin.extract('style', CSS_LOADER)
                                               : `style!${CSS_LOADER}`
+            },
+            {
+                test: /\.png$/,
+                exclude: [PATHS.NODE_MODULES],
+                loader: PNG_LOADER
             },
             {
                 test: /\.svg$/,

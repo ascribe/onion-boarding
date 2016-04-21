@@ -5,13 +5,16 @@
 }
 
 .conveyor-belt {
-    background: gray;
+    background-image: url('../../styles/assets/conveyor_belt.png');
+    background-repeat: repeat-x;
+    background-size: contain;
     bottom: 0;
-    height: 30px;
+    height: 55px;
     position: absolute;
     width: 100%;
 }
 
 .blocks-container {
+    margin-bottom: 25px;
     white-space: nowrap;
 }
