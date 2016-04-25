@@ -66,7 +66,8 @@ const WorkRegistrationContainer = React.createClass({
                         signature: {
                             customHeaders: makeCsrfHeader(getCsrfToken()),
                             endpoint: AppUrls.S3_SIGNATURE
-                        }
+                        },
+                        validation: UploaderConstants.VALIDATION.REGISTER_WORK
                     }}
                     uploaderType={AscribeUploader}>
                     <WorkRegistration onReset={onReset} />

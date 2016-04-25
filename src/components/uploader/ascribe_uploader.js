@@ -1,6 +1,7 @@
 import React from 'react';
 
 import CustomHeaderOnChangeUploader from 'ascribe-react-components/modules/uploader/extended_uploaders/custom_header_on_change_uploader';
+import CustomValidationUploader from 'ascribe-react-components/modules/uploader/extended_uploaders/custom_validation_uploader';
 import ReactS3FineUploader from 'ascribe-react-components/modules/uploader/react_s3_fine_uploader';
 
 import AscribeBlobUploader from './ascribe_blob_uploader';
@@ -17,9 +18,15 @@ import { getCsrfToken, makeCsrfHeader } from '../../utils/csrf';
 
 const { func, object } = React.PropTypes;
 
-// Create the uploader by adding blob, request key, and custom header functionality to
+// Create the uploader by adding blob, request key, custom header, and validation functionality to
 // ReactS3FineUploader
-const Uploader = AscribeRequestKeyUploader(AscribeBlobUploader(CustomHeaderOnChangeUploader(ReactS3FineUploader)));
+const UploaderEnhancements = [
+    CustomValidationUploader,
+    CustomHeaderOnChangeUploader,
+    AscribeBlobUploader,
+    AscribeRequestKeyUploader
+];
+const Uploader = UploaderEnhancements.reduce((Uploader, Enhancer) => Enhancer(Uploader), ReactS3FineUploader);
 
 //FIXME: eventually this should be in a private components library...
 const AscribeUploader = React.createClass(uploaderSpecExtender({

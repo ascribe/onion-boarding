@@ -9,10 +9,18 @@ export const FileCategory = {
     THUMBNAIL: 'thumbnail'
 };
 
+export const Validation = {
+    REGISTER_WORK: {
+        itemLimit: 1,
+        sizeLimit: 50000000000 /* 50gb */
+    }
+};
+
 export default {
     ACCESS_KEY,
     BUCKET,
     FILE_CATEGORY: FileCategory,
     CDN_UPLOAD_ENDPOINT,
-    UPLOAD_ENDPOINT
+    UPLOAD_ENDPOINT,
+    VALIDATION: Validation
 };
