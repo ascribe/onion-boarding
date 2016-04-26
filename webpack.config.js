@@ -58,7 +58,10 @@ const plugins = [
             removeComments: true,
             removeRedundantAttributes: true
         } : false,
-        template: path.resolve(__dirname, 'src/index_template.html')
+        template: path.resolve(__dirname, 'src/index_template.html'),
+
+        // Our own options
+        PRODUCTION: PRODUCTION
     })
 ];
 
