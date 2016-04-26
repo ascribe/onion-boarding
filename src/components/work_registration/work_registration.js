@@ -37,7 +37,9 @@ const WorkRegistration = React.createClass({
     },
 
     handleFormSubmit(formData) {
-        //TODO: go to onion by passing file key, name, etc. as url params
+        //TODO: go to onion by passing file key, name, etc. as url params.
+        //Since we're in an iframe, make sure to use target="_top" or window.top.location.href
+        //to navigate the top window and not just this iframe.
     },
 
     handleReset() {

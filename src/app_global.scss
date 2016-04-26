@@ -1,5 +1,12 @@
 // Global app styles
+html {
+    height: 100%;
+}
+
 body {
+    height: 100%;
+
+    /* Fonts */
     font-family: $onionboarding--fallback-font;
     font-size: $onionboarding--fallback-font-size-base;
     font-weight: $onionboarding--font-weight-light;
@@ -9,6 +16,10 @@ body {
         font-family: $onionboarding--gibson-font;
         font-size: $onionboarding--gibson-font-size-base;
     }
+}
+
+:global(#ascribe--onion-boarding-app) {
+    height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -3,19 +3,20 @@
 
     <head>
         <title>Onion-boarding Demo</title>
-        <script src="/assets/bundle.js" defer></script>
-
-        <!-- Typekit gibson font -->
-        <script src="https://use.typekit.net/gma2yhj.js"></script>
-        <script>
-            try {Typekit.load({ async: true });}
-            catch(e){console.error('Could not load typekit with error', e)}
-        </script>
+        <style>
+            body { margin: 0 }
+        </style>
     </head>
 
     <body>
-        <!-- Use default height of 675px for testing the onionboarding app -->
-        <div id="ascribe--onion-boarding-app" style="height: 675px"></div>
+        <iframe
+            name="Onionboarding"
+            frameborder="no"
+            height="675"
+            width="100%"
+            style="border: 0; margin: 0"
+            src="./assets/index.html">
+        </iframe>
     </body>
 
 </html>
