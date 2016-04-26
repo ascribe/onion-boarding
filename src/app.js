@@ -41,12 +41,7 @@ const OnionboardingApp = CssModules(React.createClass({
             selectedFile: file
         });
 
-    },
-
-    onUploadError() {
-        this.setState({
-            selectedFile: null
-        });
+        //TODO: get hash either from webworker or from server
     },
 
     render() {
@@ -65,8 +60,7 @@ const OnionboardingApp = CssModules(React.createClass({
                 <WorkRegistrationContainer
                     onReset={this.onReset}
                     hasFile={hasFile}
-                    onSelectFile={this.onSelectFile}
-                    onUploadError={this.onUploadError} />
+                    onSelectFile={this.onSelectFile} />
                 <BlocksConveyor fileHash={fileHash} fileName={selectedFile ? selectedFile.name : null} />
             </div>
         );

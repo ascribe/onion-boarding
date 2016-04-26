@@ -37,16 +37,17 @@ const WorkRegistration = React.createClass({
     },
 
     handleFormSubmit(formData) {
+        //TODO: go to onion by passing file key, name, etc. as url params
     },
 
     handleReset() {
         const { onReset, uploaderFiles } = this.props;
         const { handleCancelFile, handleDeleteFile } = this.context;
 
+        // Reset the uploader here, and let WorkRegistrationFormContainer handle reseting the form
+        // if it needs to
         uploaderFiles.filter(uploadingFilesFilter).forEach(handleCancelFile);
         uploaderFiles.filter(uploadedFilesFilter).forEach(handleDeleteFile);
-
-        // Don't need to reset the form since it should get reset by react when it's rerendered.
 
         safeInvoke(onReset);
     },

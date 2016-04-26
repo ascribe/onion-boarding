@@ -21,6 +21,9 @@ const WorkRegistrationBackButton = CssModules(({ children, ...buttonProps }) => 
 WorkRegistrationBackButton.displayName = 'WorkRegistrationBackButton';
 
 
+// Note: for now, we don't care about reseting the form since we're rerendering it each time there's
+// a new upload. In the future where we might keep the form around (ie. if we use a slide
+// transition), we'd probably want to reset the form here.
 const WorkRegistrationFormContainer = ({ onFormSubmit, onReset, selectedFile }) => (
     <div styleName="container">
         <WorkRegistrationBackButton onClick={onReset}>

@@ -3,6 +3,7 @@ import Raven from 'raven-js';
 import AppConstants from '../constants/app_constants';
 
 
+// FIXME: should be moved to separate JsUtils package
 /**
  * Logs an error in to the console but also sends it to Sentry.
  * Optionally, a comment can be defined.
@@ -20,6 +21,7 @@ function logSentry(raven, error, comment, ignoreSentry) {
     }
 }
 
+// FIXME: should be moved to separate JsUtils package
 /**
  * Initializes the given Raven instance with the url and configuration and registers the error
  * handler globally via `console.logSentry`.

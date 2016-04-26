@@ -21,14 +21,7 @@ const WorkRegistrationContainer = React.createClass({
     propTypes: {
         hasFile: bool,
         onReset: func,
-        onSelectFile: func,
-        onUploadError: func
-    },
-
-    getInitialState() {
-        return {
-            failedDeleteFiles: {}
-        }
+        onSelectFile: func
     },
 
     onDeleteComplete(file, xhr, isError) {
@@ -39,11 +32,14 @@ const WorkRegistrationContainer = React.createClass({
         }
     },
 
-    onUploaderValidationError(errors) {
+    onFileValidationError(errors, passed, files) {
+        //TODO: Woj will come back with mock ups for handling the error state here
+
+        return Promise.resolve(passed);
     },
 
     render() {
-        const { onReset, hasFile, onSelectFile, onUploadError } = this.props;
+        const { onReset, hasFile, onSelectFile } = this.props;
 
         return (
             <div styleName="drag-and-drop-container">
@@ -54,9 +50,8 @@ const WorkRegistrationContainer = React.createClass({
                     uploaderProps={{
                         multiple: false,
                         onDeleteComplete: this.onDeleteComplete,
-                        onError: onUploadError,
                         onSubmitted: onSelectFile,
-                        onValidationError: this.onUploaderValidationError,
+                        onValidationError: this.onFileValidationError,
                         requestKeyParams: {
                             body: {
                                 category: UploaderConstants.FILE_CATEGORY.DIGITAL_WORK

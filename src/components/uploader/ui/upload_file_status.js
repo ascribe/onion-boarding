@@ -14,6 +14,8 @@ import UploadCompleteSvg from '../../../styles/icons/upload_complete_svg.svg';
 import styles from './upload_file_status.scss';
 
 
+const { func, object } = React.PropTypes;
+
 const FileIcon = CssModules(({ extension }) => (
     <span styleName="file-icon-container">
         <FileSvg height="35" aria-hidden />
@@ -24,7 +26,15 @@ const FileIcon = CssModules(({ extension }) => (
 FileIcon.displayName = 'FileIcon';
 
 
-const UploadFileStatus = ({ file }) => {
+const propTypes = {
+    file: object
+};
+
+const contextTypes = {
+    handleRetryFile: func
+};
+
+const UploadFileStatus = ({ file }, { handleRetryFile }) => {
     let progressIndicator;
 
     if (file.status === FileStatus.UPLOADED) {
@@ -37,6 +47,11 @@ const UploadFileStatus = ({ file }) => {
                     styleName="progress-complete-icon" />
             ),
             getLangText('Uploaded')
+        ];
+    } else if (file.status === FileStatus.UPLOAD_FAILED) {
+        progressIndicator = [
+            //TODO: Woj will provide mockups
+            <button onClick={() => handleRetryFile(file)}>{getLangText('Retry')}</button>
         ];
     } else {
         progressIndicator = [
@@ -60,5 +75,8 @@ const UploadFileStatus = ({ file }) => {
         </div>
     );
 };
+
+UploadFileStatus.propTypes = propTypes;
+UploadFileStatus.contextTypes = contextTypes;
 
 export default CssModules(UploadFileStatus, styles);
