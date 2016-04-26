@@ -43,8 +43,8 @@ $cube-color--side-base: rgb(0, 44, 60);
     composes: transform-fix from '../../styles/utils.scss';
 
     background-color: $cube-color--side-base;
-    transform: translateX(103.5px)
-               translateY(-28.5px)
+    transform: translateX(103.3px)
+               translateY(-28.3px)
                rotateY(64.7deg)
                skewY(-21.2deg);
 }
