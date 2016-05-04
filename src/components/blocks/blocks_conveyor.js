@@ -30,7 +30,7 @@ const BlocksGroup = Dimensions()(CssModules(({ blockDetails: { hash, name } = {}
     // slow at rerendering on resizes.
     const numBlocks = Math.ceil((containerWidth - BLOCK_GROUP_SHIFT_X) / (145 + BLOCK_MARGIN)) + 1;
 
-    for (ii = 0; ii < numBlocks; ++ii) {
+    for (let ii = 0; ii < numBlocks; ++ii) {
         blocks.push(
             <Block
                 key={ii}

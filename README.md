@@ -71,7 +71,7 @@ Development
 -----------
 
 For now, the final bundle is not too big so we're not optimizing it,
-but in the future it woudl be nice to optimize for common assets
+but in the future it would be nice to optimize for common assets
 between apps (ie. React, React Components, etc.).
 
 The only thing to keep in mind is that in the end, everything should be
