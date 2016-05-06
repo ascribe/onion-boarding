@@ -20,9 +20,6 @@ const PATHS = {
     NODE_MODULES: path.resolve(__dirname, 'node_modules')
 };
 
-// Browsers to target when prefixing CSS.
-const COMPATIBILITY = ['Chrome >= 30', 'Safari >= 6.1', 'Firefox >= 35', 'Opera >= 32', 'iOS >= 8', 'Android >= 2.3', 'ie >= 10'];
-
 // Definitions injected into app
 const DEFINITIONS = {
     'process.env': {
@@ -199,7 +196,7 @@ const config = {
         ]
     },
 
-    postcss: [autoPrefixer({ browsers: COMPATIBILITY })],
+    postcss: [autoPrefixer()],
     sassResources: './sass-resources.scss'
 };
 
