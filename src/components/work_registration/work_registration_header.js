@@ -10,6 +10,8 @@ import styles from './work_registration_header.scss';
 
 
 const WorkRegistrationHeader = () => {
+    // Popover needs an id for accessibility reasons:
+    // https://react-bootstrap.github.io/components.html#popover-props
     const popover = (
         <Popover id="help-text-popover">
             {getLangText('Sample explainer text...')}
