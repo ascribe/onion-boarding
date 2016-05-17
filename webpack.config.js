@@ -1,3 +1,4 @@
+/* eslint-disable strict, no-console, object-shorthand */
 'use strict';
 
 const path = require('path');
