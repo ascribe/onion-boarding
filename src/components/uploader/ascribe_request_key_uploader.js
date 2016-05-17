@@ -65,15 +65,16 @@ const AscribeRequestKeyUploader = (Uploader) => (
 
         render() {
             const { objectProperties } = this.props;
-            let {
-                onRequestKeyError, // ignore
-                onRequestKeySuccess, // ignore
-                requestKeyParams, // ignore
+            const {
+                onRequestKeyError: ignoredOnRequestKeyError, // ignore
+                onRequestKeySuccess: ignoredOnRequestKeySuccess, // ignore
+                requestKeyParams: ignoredRequestKeyParams, // ignore
                 ...uploaderProps
             } = this.props;
 
+            let uploaderPropsWithObjectKey = uploaderProps;
             if (!objectProperties || !objectProperties.hasOwnProperty('key')) {
-                uploaderProps = Object.assign({}, uploaderProps, {
+                uploaderPropsWithObjectKey = Object.assign({}, uploaderProps, {
                     objectProperties: {
                         ...objectProperties,
                         key: this.requestKey
@@ -81,7 +82,7 @@ const AscribeRequestKeyUploader = (Uploader) => (
                 });
             }
 
-            return (<Uploader ref="uploader" {...uploaderProps} />);
+            return (<Uploader ref="uploader" {...uploaderPropsWithObjectKey} />);
         }
     }))
 );

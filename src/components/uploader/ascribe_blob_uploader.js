@@ -61,9 +61,9 @@ const AscribeBlobUploader = (Uploader) => {
 
         render() {
             const {
-                createBlobParams, // ignore
-                onCreateBlobError, // ignore
-                onCreateBlobSuccess, // ignore
+                createBlobParams: ignoredCreateBlobParams, // ignore
+                onCreateBlobError: ignoredOnCreateBlobError, // ignore
+                onCreateBlobSuccess: ignoredOnCreateBlobSuccess, // ignore
                 ...uploaderProps
             } = this.props;
 
