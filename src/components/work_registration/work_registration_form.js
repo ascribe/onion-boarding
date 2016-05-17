@@ -97,7 +97,8 @@ const WorkRegistrationForm = React.createClass({
                 buttonEdited={null}
                 buttonSubmitting={(
                     <FormSubmitButton disabled>
-                        {getLangText('Generating Certificate')} <Spinner className={styles['submit-spinner']} />
+                        {getLangText('Generating Certificate')}
+                        <Spinner className={styles['submit-spinner']} />
                     </FormSubmitButton>
                 )}
                 customPropertyTypes={[SimpleProperty]}
