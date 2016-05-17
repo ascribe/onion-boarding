@@ -1,4 +1,5 @@
 /* eslint-disable strict, no-console */
+/* eslint-disable import/no-extraneous-dependencies, import/newline-after-import */
 'use strict';
 const path = require('path');
 

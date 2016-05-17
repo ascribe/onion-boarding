@@ -2,8 +2,6 @@ import React from 'react';
 
 import CreateBlobUploader from 'ascribe-react-components/modules/uploader/extended_uploaders/create_blob_uploader';
 
-import AppConstants from '../../constants/app_constants';
-
 import uploaderSpecExtender from 'ascribe-react-components/modules/uploader/utils/uploader_spec_extender';
 import { getCsrfToken, makeCsrfHeader } from '../../utils/csrf';
 import request from '../../utils/request';
@@ -11,7 +9,7 @@ import request from '../../utils/request';
 
 const { func, object, shape, string } = React.PropTypes;
 
-//FIXME: eventually this should be in a private components library...
+// FIXME: eventually this should be in a private components library...
 const AscribeBlobUploader = (Uploader) => {
     const BlobUploader = CreateBlobUploader(Uploader);
 

@@ -18,7 +18,7 @@ const { func, object } = React.PropTypes;
 
 const FileIcon = CssModules(({ extension }) => (
     <span styleName="file-icon-container">
-        <FileSvg height="35" aria-hidden />
+        <FileSvg aria-hidden height="35" />
         <span styleName="file-icon-extension">{truncateTextAtCharIndex(extension, 3, '')}</span>
     </span>
 ), styles);
@@ -39,27 +39,24 @@ const UploadFileStatus = ({ file }, { handleRetryFile }) => {
 
     if (file.status === FileStatus.UPLOADED) {
         progressIndicator = [
-            (
-                <UploadCompleteSvg
-                    key="progress-complete-icon"
-                    aria-hidden
-                    height="12"
-                    styleName="progress-complete-icon" />
-            ),
+            (<UploadCompleteSvg
+                key="progress-complete-icon"
+                aria-hidden
+                height="12"
+                styleName="progress-complete-icon" />),
             getLangText('Uploaded')
         ];
     } else if (file.status === FileStatus.UPLOAD_FAILED) {
         progressIndicator = [
-            //TODO: Woj will provide mockups
+            // TODO: Woj will provide mockups
+            // eslint-disable-next-line react/jsx-key
             <button onClick={() => handleRetryFile(file)}>{getLangText('Retry')}</button>
         ];
     } else {
         progressIndicator = [
-            (
-                <span key="progress-percent" styleName="progress-percent">
-                    {`${Math.ceil(file.progress)}`}
-                </span>
-            ),
+            (<span key="progress-percent" styleName="progress-percent">
+                {`${Math.ceil(file.progress)}`}
+            </span>),
             getLangText('Uploading')
         ];
     }

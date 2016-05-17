@@ -5,9 +5,6 @@ import 'core-js/stage/4';
 
 import 'isomorphic-fetch';
 
-// Bootstrap global app dependencies
-import './utils/error_handling';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Bowser from 'bowser';
@@ -16,6 +13,10 @@ import CssModules from 'react-css-modules';
 import Header from './components/header';
 import BlocksConveyor from './components/blocks/blocks_conveyor';
 import WorkRegistrationContainer from './components/work_registration_container';
+
+// Bootstrap global app dependencies
+// Error logging and Sentry:
+import './utils/error_handling';
 
 // Import global app styles
 import './app_global.scss';
@@ -41,7 +42,7 @@ const OnionboardingApp = CssModules(React.createClass({
             selectedFile: file
         });
 
-        //TODO: get hash either from webworker or from server
+        // TODO: get hash either from webworker or from server
     },
 
     render() {
@@ -58,10 +59,12 @@ const OnionboardingApp = CssModules(React.createClass({
             <div className={browserName} styleName="app">
                 <Header hide={hasFile} />
                 <WorkRegistrationContainer
-                    onReset={this.onReset}
                     hasFile={hasFile}
+                    onReset={this.onReset}
                     onSelectFile={this.onSelectFile} />
-                <BlocksConveyor fileHash={fileHash} fileName={selectedFile ? selectedFile.name : null} />
+                <BlocksConveyor
+                    fileHash={fileHash}
+                    fileName={selectedFile ? selectedFile.name : null} />
             </div>
         );
     }

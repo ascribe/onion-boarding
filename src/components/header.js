@@ -11,6 +11,12 @@ import { getLangText } from '../utils/lang';
 import styles from './header.scss';
 
 
+const { bool } = React.PropTypes;
+
+const propTypes = {
+    hide: bool
+};
+
 const Header = ({ hide }) => (
     <div style={{ visibility: hide ? 'hidden' : 'visible' }} styleName="header">
         <Grouping className="pull-right" margin={0}>
@@ -23,5 +29,7 @@ const Header = ({ hide }) => (
         </Grouping>
     </div>
 );
+
+Header.propTypes = propTypes;
 
 export default CssModules(Header, styles);
