@@ -34,9 +34,12 @@ const AscribeBlobUploader = (Uploader) => {
             // If createBlobParams is not defined, progress right away without posting to S3 to let
             // this be done later by another component
             if (!createBlobParams) {
-                // Still we warn the user of this component
-                console.warn('createBlobParams was not defined for AscribeBlobUploader. ' +
-                             'Continuing without creating the blob on the server.');
+                if (process.env.NODE_ENV !== 'production') {
+                    // Still we warn the user of this component during development
+                    // eslint-disable-next-line no-console
+                    console.warn('createBlobParams was not defined for AscribeBlobUploader. ' +
+                                 'Continuing without creating the blob on the server.');
+                }
                 return Promise.resolve();
             }
 
