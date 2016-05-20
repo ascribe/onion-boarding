@@ -1,0 +1,6 @@
+{
+    "extends": "ascribe",
+    "rules": {
+        "no-console": [2, { "allow": ["error", "logSentry"] }]
+    }
+}
