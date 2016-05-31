@@ -3,6 +3,7 @@
 'use strict';
 
 const path = require('path');
+const removeTrailingSlash = require('remove-trailing-slash');
 
 const webpack = require('webpack');
 const autoPrefixer = require('autoprefixer');
@@ -29,9 +30,15 @@ const DEFINITIONS = {
 
         APP_VERSION: JSON.stringify(process.env.ONIONBOARDING_APP_VERSION || 'dev'),
 
-        API_URL: JSON.stringify(process.env.ONION_API_URL || 'https://staging.ascribe.io/api'),
-        ONION_BASE_PATH: JSON.stringify(process.env.ONION_BASE_PATH || 'https://staging.ascribe.io/app'),
-        SERVER_URL: JSON.stringify(process.env.ONION_SERVER_URL || 'https://staging.ascribe.io/'),
+        API_URL: JSON.stringify(
+            removeTrailingSlash(process.env.ONION_API_URL || 'https://staging.ascribe.io/api')
+        ),
+        ONION_BASE_PATH: JSON.stringify(
+            removeTrailingSlash(process.env.ONION_BASE_PATH || 'https://staging.ascribe.io/app')
+        ),
+        SERVER_URL: JSON.stringify(
+            removeTrailingSlash(process.env.ONION_SERVER_URL || 'https://staging.ascribe.io')
+        ),
 
         RAVEN_DSN_URL: JSON.stringify(process.env.RAVEN_DSN_URL || ''),
 
