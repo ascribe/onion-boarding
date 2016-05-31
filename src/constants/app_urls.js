@@ -1,4 +1,4 @@
-import { APP_BASE_PATH } from './app_constants';
+import { ONION_BASE_PATH } from './app_constants';
 
 
 // Base urls from env
@@ -6,8 +6,8 @@ export const BASE_API = process.env.API_URL;
 export const BASE_SERVER = process.env.SERVER_URL;
 
 // App urls
-export const APP_LOGIN = `${APP_BASE_PATH}login`;
-export const APP_SIGNUP = `${APP_BASE_PATH}signup`;
+export const APP_LOGIN = `${ONION_BASE_PATH}/login`;
+export const APP_SIGNUP = `${ONION_BASE_PATH}/signup`;
 
 // S3 urls
 export const S3_DELETE = `${BASE_SERVER}/s3/delete/`;

@@ -27,11 +27,11 @@ const DEFINITIONS = {
     'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
 
-        APP_VERSION: JSON.stringify(process.env.APP_VERSION || 'dev'),
+        APP_VERSION: JSON.stringify(process.env.ONIONBOARDING_APP_VERSION || 'dev'),
 
-        API_URL: JSON.stringify(process.env.API_URL || 'https://staging.ascribe.io/api'),
-        APP_BASE_PATH: JSON.stringify(process.env.APP_BASE_PATH || '/'),
-        SERVER_URL: JSON.stringify(process.env.SERVER_URL || 'https://staging.ascribe.io/'),
+        API_URL: JSON.stringify(process.env.ONION_API_URL || 'https://staging.ascribe.io/api'),
+        ONION_BASE_PATH: JSON.stringify(process.env.ONION_BASE_PATH || 'https://staging.ascribe.io/app'),
+        SERVER_URL: JSON.stringify(process.env.ONION_SERVER_URL || 'https://staging.ascribe.io/'),
 
         RAVEN_DSN_URL: JSON.stringify(process.env.RAVEN_DSN_URL || ''),
 
