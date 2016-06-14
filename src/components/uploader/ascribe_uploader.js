@@ -4,15 +4,16 @@ import CustomHeaderOnChangeUploader from 'ascribe-react-components/modules/uploa
 import CustomValidationUploader from 'ascribe-react-components/modules/uploader/extended_uploaders/custom_validation_uploader';
 import ReactS3FineUploader from 'ascribe-react-components/modules/uploader/react_s3_fine_uploader';
 
+import UploaderSupportedFeatures from 'ascribe-react-components/modules/uploader/constants/supported_features';
+import uploaderSpecExtender from 'ascribe-react-components/modules/uploader/utils/uploader_spec_extender';
+
 import AscribeBlobUploader from './ascribe_blob_uploader';
 import AscribeRequestKeyUploader from './ascribe_request_key_uploader';
 
-import UploaderSupportedFeatures from 'ascribe-react-components/modules/uploader/constants/supported_features';
 import AppUrls from '../../constants/app_urls';
 import CsrfConstants from '../../constants/csrf_constants';
 import UploaderConstants from '../../constants/uploader_constants';
 
-import uploaderSpecExtender from 'ascribe-react-components/modules/uploader/utils/uploader_spec_extender';
 import { getCsrfToken, makeCsrfHeader } from '../../utils/csrf';
 
 
@@ -26,9 +27,12 @@ const UploaderEnhancements = [
     AscribeBlobUploader,
     AscribeRequestKeyUploader
 ];
-const Uploader = UploaderEnhancements.reduce((Uploader, Enhancer) => Enhancer(Uploader), ReactS3FineUploader);
+const EnhancedUploader = UploaderEnhancements.reduce(
+    (Uploader, Enhancer) => Enhancer(Uploader),
+    ReactS3FineUploader
+);
 
-//FIXME: eventually this should be in a private components library...
+// FIXME: eventually this should be in a private components library...
 const AscribeUploader = React.createClass(uploaderSpecExtender({
     displayName: 'AscribeUploader',
 
@@ -39,6 +43,7 @@ const AscribeUploader = React.createClass(uploaderSpecExtender({
         onCreateBlobSuccess: func,
 
         // AscribeRequestKeyUploader props
+        // eslint-disable-next-line react/sort-prop-types
         requestKeyParams: object.isRequired,
         onRequestKeyError: func,
         onRequestKeySuccess: func,
@@ -73,10 +78,9 @@ const AscribeUploader = React.createClass(uploaderSpecExtender({
                 endpoint: AppUrls.S3_DELETE,
                 customHeaders: csrfHeader
             },
-            formatFileName: (name) => {
-                return (name && name.length > 30) ? `${name.slice(0, 15)}...${name.slice(-15)}`
-                                                  : name;
-            },
+            formatFileName: (name) => (
+                name && name.length > 30 ? `${name.slice(0, 15)}...${name.slice(-15)}` : name
+            ),
             messages: {},
             objectProperties: {
                 acl: 'public-read',
@@ -84,7 +88,7 @@ const AscribeUploader = React.createClass(uploaderSpecExtender({
             },
             request: {
                 accessKey: UploaderConstants.ACCESS_KEY,
-                //endpoint: UploaderConstants.CDN_UPLOAD_ENDPOINT
+                // endpoint: UploaderConstants.CDN_UPLOAD_ENDPOINT
                 endpoint: UploaderConstants.UPLOAD_ENDPOINT
             },
             resume: {
@@ -124,7 +128,7 @@ const AscribeUploader = React.createClass(uploaderSpecExtender({
     },
 
     render() {
-        return (<Uploader {...this.props} />);
+        return (<EnhancedUploader {...this.props} />);
     }
 }));
 

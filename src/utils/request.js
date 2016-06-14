@@ -1,14 +1,19 @@
+const DEFAULT_REQUEST_CONFIG = {
+    credentials: 'include'
+};
+
 /**
  * Global fetch wrapper that adds some basic error handling and default configurations
  */
 export default function request(url, config) {
     // Load default fetch configuration
-    config = Object.assign({
-        credentials: 'include'
-    }, config);
+    const requestConfig = {
+        ...DEFAULT_REQUEST_CONFIG,
+        ...config
+    };
 
     return window
-        .fetch(url, config)
+        .fetch(url, requestConfig)
         .then((res) => {
             // If status is not a 2xx, assume it's an error
             if (!(res.status >= 200 && res.status <= 300)) {
@@ -17,7 +22,8 @@ export default function request(url, config) {
             return res;
         })
         .catch((err) => {
-            console.logSentry(`Request (${config.method || 'get'}) to ${url} failed with ` +
+            // eslint-disable-next-line prefer-template
+            console.logSentry(`Request (${requestConfig.method || 'get'}) to ${url} failed with ` +
                               ((err instanceof Error) ? `error: ${err}`
                                                       : `status: ${err.status} (${err.statusText})`));
 

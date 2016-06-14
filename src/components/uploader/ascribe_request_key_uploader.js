@@ -8,9 +8,9 @@ import request from '../../utils/request';
 
 const { func, object, shape, string } = React.PropTypes;
 
-//FIXME: eventually this should be in a private components library...
-const AscribeRequestKeyUploader = (Uploader) => {
-    return React.createClass(uploaderSpecExtender({
+// FIXME: eventually this should be in a private components library...
+const AscribeRequestKeyUploader = (Uploader) => (
+    React.createClass(uploaderSpecExtender({
         displayName: 'AscribeRequestKeyUploader',
 
         propTypes: {
@@ -23,7 +23,10 @@ const AscribeRequestKeyUploader = (Uploader) => {
             onRequestKeyError: func,
             onRequestKeySuccess: func,
 
-            objectProperties: object // FineUploader option that may be modified with a key param
+            // FineUploader option that contains the key as a string or function.
+            // If the key is already set, don't override it, but if not, provide one that will call
+            // `requestKeyParams.url` to get the key.
+            objectProperties: object // eslint-disable-line react/sort-prop-types
 
             // All other props are passed unmodified to backing Uploader
         },
@@ -62,15 +65,16 @@ const AscribeRequestKeyUploader = (Uploader) => {
 
         render() {
             const { objectProperties } = this.props;
-            let {
-                onRequestKeyError, // ignore
-                onRequestKeySuccess, // ignore
-                requestKeyParams, // ignore
+            const {
+                onRequestKeyError: ignoredOnRequestKeyError, // ignore
+                onRequestKeySuccess: ignoredOnRequestKeySuccess, // ignore
+                requestKeyParams: ignoredRequestKeyParams, // ignore
                 ...uploaderProps
             } = this.props;
 
+            let uploaderPropsWithObjectKey = uploaderProps;
             if (!objectProperties || !objectProperties.hasOwnProperty('key')) {
-                uploaderProps = Object.assign({}, uploaderProps, {
+                uploaderPropsWithObjectKey = Object.assign({}, uploaderProps, {
                     objectProperties: {
                         ...objectProperties,
                         key: this.requestKey
@@ -78,9 +82,9 @@ const AscribeRequestKeyUploader = (Uploader) => {
                 });
             }
 
-            return (<Uploader ref="uploader" {...uploaderProps} />);
+            return (<Uploader ref="uploader" {...uploaderPropsWithObjectKey} />);
         }
-    }));
-};
+    }))
+);
 
 export default AscribeRequestKeyUploader;

@@ -25,7 +25,7 @@ const WorkRegistrationHeader = () => {
                 <div styleName="emphasis">{getLangText('Certificate of Authenticity')}</div>
                 <div styleName="subtext">{getLangText('Enter the details on the right')}</div>
             </h2>
-            <OverlayTrigger trigger="click" placement="top" overlay={popover}>
+            <OverlayTrigger overlay={popover} placement="top" trigger="click">
                 <button styleName="help-text-button">{getLangText('What is happening?')}</button>
             </OverlayTrigger>
         </div>

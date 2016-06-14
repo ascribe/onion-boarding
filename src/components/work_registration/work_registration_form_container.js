@@ -11,6 +11,8 @@ import BackArrowSvg from '../../styles/icons/back_arrow_svg.svg';
 import styles from './work_registration_form_container.scss';
 
 
+const { func, object } = React.PropTypes;
+
 const WorkRegistrationBackButton = CssModules(({ children, ...buttonProps }) => (
     <button {...buttonProps} styleName="back-button">
         <BackArrowSvg aria-hidden height="7" styleName="back-arrow-icon" />
@@ -20,6 +22,12 @@ const WorkRegistrationBackButton = CssModules(({ children, ...buttonProps }) => 
 
 WorkRegistrationBackButton.displayName = 'WorkRegistrationBackButton';
 
+
+const propTypes = {
+    onFormSubmit: func,
+    onReset: func,
+    selectedFile: object
+};
 
 // Note: for now, we don't care about reseting the form since we're rerendering it each time there's
 // a new upload. In the future where we might keep the form around (ie. if we use a slide
@@ -35,5 +43,7 @@ const WorkRegistrationFormContainer = ({ onFormSubmit, onReset, selectedFile }) 
             selectedFile={selectedFile} />
     </div>
 );
+
+WorkRegistrationFormContainer.propTypes = propTypes;
 
 export default CssModules(WorkRegistrationFormContainer, styles);

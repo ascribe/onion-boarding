@@ -2,8 +2,6 @@ import React from 'react';
 
 import CreateBlobUploader from 'ascribe-react-components/modules/uploader/extended_uploaders/create_blob_uploader';
 
-import AppConstants from '../../constants/app_constants';
-
 import uploaderSpecExtender from 'ascribe-react-components/modules/uploader/utils/uploader_spec_extender';
 import { getCsrfToken, makeCsrfHeader } from '../../utils/csrf';
 import request from '../../utils/request';
@@ -11,7 +9,7 @@ import request from '../../utils/request';
 
 const { func, object, shape, string } = React.PropTypes;
 
-//FIXME: eventually this should be in a private components library...
+// FIXME: eventually this should be in a private components library...
 const AscribeBlobUploader = (Uploader) => {
     const BlobUploader = CreateBlobUploader(Uploader);
 
@@ -36,9 +34,12 @@ const AscribeBlobUploader = (Uploader) => {
             // If createBlobParams is not defined, progress right away without posting to S3 to let
             // this be done later by another component
             if (!createBlobParams) {
-                // Still we warn the user of this component
-                console.warn('createBlobParams was not defined for AscribeBlobUploader. ' +
-                             'Continuing without creating the blob on the server.');
+                if (process.env.NODE_ENV !== 'production') {
+                    // Still we warn the user of this component during development
+                    // eslint-disable-next-line no-console
+                    console.warn('createBlobParams was not defined for AscribeBlobUploader. ' +
+                                 'Continuing without creating the blob on the server.');
+                }
                 return Promise.resolve();
             }
 
@@ -63,9 +64,9 @@ const AscribeBlobUploader = (Uploader) => {
 
         render() {
             const {
-                createBlobParams, // ignore
-                onCreateBlobError, // ignore
-                onCreateBlobSuccess, // ignore
+                createBlobParams: ignoredCreateBlobParams, // ignore
+                onCreateBlobError: ignoredOnCreateBlobError, // ignore
+                onCreateBlobSuccess: ignoredOnCreateBlobSuccess, // ignore
                 ...uploaderProps
             } = this.props;
 
