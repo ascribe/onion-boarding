@@ -27,8 +27,10 @@ const UploaderEnhancements = [
     AscribeBlobUploader,
     AscribeRequestKeyUploader
 ];
-const EnhancedUploader = UploaderEnhancements.reduce((Uploader, Enhancer) => Enhancer(Uploader),
-                                                     ReactS3FineUploader);
+const EnhancedUploader = UploaderEnhancements.reduce(
+    (Uploader, Enhancer) => Enhancer(Uploader),
+    ReactS3FineUploader
+);
 
 // FIXME: eventually this should be in a private components library...
 const AscribeUploader = React.createClass(uploaderSpecExtender({
