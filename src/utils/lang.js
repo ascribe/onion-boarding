@@ -1,4 +1,4 @@
-import { formatText } from 'ascribe-react-components/modules/utils/general';
+import { formatText } from 'js-utility-belt/es6/text';
 
 
 /**

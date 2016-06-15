@@ -1,9 +1,13 @@
+import { request as baseRequest } from 'js-utility-belt/es6';
+
+
 const DEFAULT_REQUEST_CONFIG = {
     credentials: 'include'
 };
 
 /**
- * Global fetch wrapper that adds some basic error handling and default configurations
+ * Small wrapper around js-utility-belt's request that provides default settings and response
+ * handling.
  */
 export default function request(url, config) {
     // Load default fetch configuration
@@ -12,20 +16,13 @@ export default function request(url, config) {
         ...config
     };
 
-    return window
-        .fetch(url, requestConfig)
-        .then((res) => {
-            // If status is not a 2xx, assume it's an error
-            if (!(res.status >= 200 && res.status <= 300)) {
-                throw res;
-            }
-            return res;
-        })
+    return baseRequest(url, requestConfig)
         .catch((err) => {
-            // eslint-disable-next-line prefer-template
-            console.logSentry(`Request (${requestConfig.method || 'get'}) to ${url} failed with ` +
-                              ((err instanceof Error) ? `error: ${err}`
-                                                      : `status: ${err.status} (${err.statusText})`));
+            const method = requestConfig.method || 'GET';
+            const errorMsg = err instanceof Response ? `status: ${err.status} (${err.statusText})`
+                                                     : `error: ${err}`;
+
+            console.logSentry(`Request (${method}) to ${url} failed with ${errorMsg}`);
 
             // Rethrow to caller's error handler
             throw err;

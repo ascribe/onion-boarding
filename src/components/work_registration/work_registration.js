@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { uploadingFilesFilter, uploadedFilesFilter, validFilesFilter } from 'ascribe-react-components/modules/uploader/utils/file_filters';
-
-import { safeInvoke } from 'ascribe-react-components/modules/utils/general';
+import { safeInvoke } from 'js-utility-belt/es6';
 
 import WorkRegistrationFormContainer from './work_registration_form_container';
 

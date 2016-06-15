@@ -1,7 +1,8 @@
 import React from 'react';
 
 import uploaderSpecExtender from 'ascribe-react-components/modules/uploader/utils/uploader_spec_extender';
-import { safeInvoke } from 'ascribe-react-components/modules/utils/general';
+import { safeInvoke } from 'js-utility-belt/es6';
+
 import { getCsrfToken, makeCsrfHeader } from '../../utils/csrf';
 import request from '../../utils/request';
 

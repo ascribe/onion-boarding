@@ -1,4 +1,4 @@
-import { getCookie } from './cookie.js';
+import { getCookie } from 'js-utility-belt/es6/cookie';
 
 import { CSRF_COOKIE_NAME, CSRF_CUSTOM_HEADER_NAME } from '../constants/csrf_constants';
 

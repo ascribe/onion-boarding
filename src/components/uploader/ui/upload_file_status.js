@@ -3,8 +3,9 @@ import CssModules from 'react-css-modules';
 
 import FileStatus from 'ascribe-react-components/modules/uploader/constants/file_status';
 
-import { extractFileExtensionFromString } from 'ascribe-react-components/modules/utils/file';
-import { truncateTextAtCharIndex } from 'ascribe-react-components/modules/utils/general';
+import { extractFileExtensionFromString } from 'js-utility-belt/es6/file';
+import { truncateText } from 'js-utility-belt/es6/text';
+
 import { kbToMb } from '../../../utils/file';
 import { getLangText } from '../../../utils/lang';
 
@@ -19,7 +20,7 @@ const { func, object } = React.PropTypes;
 const FileIcon = CssModules(({ extension }) => (
     <span styleName="file-icon-container">
         <FileSvg aria-hidden height="35" />
-        <span styleName="file-icon-extension">{truncateTextAtCharIndex(extension, 3, '')}</span>
+        <span styleName="file-icon-extension">{truncateText(extension, 3, '')}</span>
     </span>
 ), styles);
 
@@ -64,7 +65,7 @@ const UploadFileStatus = ({ file }, { handleRetryFile }) => {
     return (
         <div styleName="container">
             <FileIcon extension={extractFileExtensionFromString(file.name)} />
-            <span styleName="file-name">{truncateTextAtCharIndex(file.name, 15)}</span>
+            <span styleName="file-name">{truncateText(file.name, 15)}</span>
             <span styleName="file-size">{`(${Math.ceil(kbToMb(file.size))}MB)`}</span>
             <span styleName="progress-container">
                 {progressIndicator}
