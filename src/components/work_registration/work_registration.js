@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { uploadingFilesFilter, uploadedFilesFilter, validFilesFilter } from 'ascribe-react-components/modules/uploader/utils/file_filters'
+import { uploadingFilesFilter, uploadedFilesFilter, validFilesFilter } from 'ascribe-react-components/modules/uploader/utils/file_filters';
+import { safeInvoke } from 'js-utility-belt/es6';
 
 import WorkRegistrationFormContainer from './work_registration_form_container';
 
 import UploadStampContainer from '../uploader/ui/upload_stamp_container';
 
-import { safeInvoke } from 'ascribe-react-components/modules/utils/general';
-import { getLangText } from '../../utils/lang';
 import { isMobileResolution } from '../../utils/responsive';
 
 
@@ -37,9 +36,9 @@ const WorkRegistration = React.createClass({
     },
 
     handleFormSubmit(formData) {
-        //TODO: go to onion by passing file key, name, etc. as url params.
-        //Since we're in an iframe, make sure to use target="_top" or window.top.location.href
-        //to navigate the top window and not just this iframe.
+        // TODO: go to onion by passing file key, name, etc. as url params.
+        // Since we're in an iframe, make sure to use target="_top" or window.top.location.href
+        // to navigate the top window and not just this iframe.
     },
 
     handleReset() {

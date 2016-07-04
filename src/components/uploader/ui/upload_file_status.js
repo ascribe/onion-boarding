@@ -3,8 +3,9 @@ import CssModules from 'react-css-modules';
 
 import FileStatus from 'ascribe-react-components/modules/uploader/constants/file_status';
 
-import { extractFileExtensionFromString } from 'ascribe-react-components/modules/utils/file';
-import { truncateTextAtCharIndex } from 'ascribe-react-components/modules/utils/general';
+import { extractFileExtensionFromString } from 'js-utility-belt/es6/file';
+import { truncateText } from 'js-utility-belt/es6/text';
+
 import { kbToMb } from '../../../utils/file';
 import { getLangText } from '../../../utils/lang';
 
@@ -18,8 +19,8 @@ const { func, object } = React.PropTypes;
 
 const FileIcon = CssModules(({ extension }) => (
     <span styleName="file-icon-container">
-        <FileSvg height="35" aria-hidden />
-        <span styleName="file-icon-extension">{truncateTextAtCharIndex(extension, 3, '')}</span>
+        <FileSvg aria-hidden height="35" />
+        <span styleName="file-icon-extension">{truncateText(extension, 3, '')}</span>
     </span>
 ), styles);
 
@@ -39,27 +40,24 @@ const UploadFileStatus = ({ file }, { handleRetryFile }) => {
 
     if (file.status === FileStatus.UPLOADED) {
         progressIndicator = [
-            (
-                <UploadCompleteSvg
-                    key="progress-complete-icon"
-                    aria-hidden
-                    height="12"
-                    styleName="progress-complete-icon" />
-            ),
+            (<UploadCompleteSvg
+                key="progress-complete-icon"
+                aria-hidden
+                height="12"
+                styleName="progress-complete-icon" />),
             getLangText('Uploaded')
         ];
     } else if (file.status === FileStatus.UPLOAD_FAILED) {
         progressIndicator = [
-            //TODO: Woj will provide mockups
+            // TODO: Woj will provide mockups
+            // eslint-disable-next-line react/jsx-key
             <button onClick={() => handleRetryFile(file)}>{getLangText('Retry')}</button>
         ];
     } else {
         progressIndicator = [
-            (
-                <span key="progress-percent" styleName="progress-percent">
-                    {`${Math.ceil(file.progress)}`}
-                </span>
-            ),
+            (<span key="progress-percent" styleName="progress-percent">
+                {`${Math.ceil(file.progress)}`}
+            </span>),
             getLangText('Uploading')
         ];
     }
@@ -67,7 +65,7 @@ const UploadFileStatus = ({ file }, { handleRetryFile }) => {
     return (
         <div styleName="container">
             <FileIcon extension={extractFileExtensionFromString(file.name)} />
-            <span styleName="file-name">{truncateTextAtCharIndex(file.name, 15)}</span>
+            <span styleName="file-name">{truncateText(file.name, 15)}</span>
             <span styleName="file-size">{`(${Math.ceil(kbToMb(file.size))}MB)`}</span>
             <span styleName="progress-container">
                 {progressIndicator}

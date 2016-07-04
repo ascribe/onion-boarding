@@ -33,7 +33,7 @@ const WorkRegistrationContainer = React.createClass({
     },
 
     onFileValidationError(errors, passed, files) {
-        //TODO: Woj will come back with mock ups for handling the error state here
+        // TODO: Woj will come back with mock ups for handling the error state here
 
         return Promise.resolve(passed);
     },

@@ -3,13 +3,24 @@ import CssModules from 'react-css-modules';
 
 import styles from './block.scss';
 
-const Block = ({ front, top, side, ...props}) => (
+
+const { node } = React.PropTypes;
+
+const propTypes = {
+    front: node,
+    side: node,
+    top: node
+};
+
+const Block = ({ front, top, side, ...props }) => (
     <div {...props} styleName="container">
         <div styleName="front">{front}</div>
         <div styleName="top">{top}</div>
         <div styleName="side">{side}</div>
     </div>
 );
+
+Block.propTypes = propTypes;
 
 // Make sure this is in sync with the width in block.scss!
 // Unfortunately there's no way to export the value directly from the stylesheet, and using an

@@ -16,7 +16,6 @@ import UploadFileStatus from '../uploader/ui/upload_file_status';
 
 import AppUrls from '../../constants/app_urls';
 
-import { noop } from 'ascribe-react-components/modules/utils/general';
 import { getLangText } from '../../utils/lang';
 
 import styles from './work_registration_form.scss';
@@ -29,12 +28,11 @@ const WorkRegistrationErrorMessage = CssModules(({ errors, isCreator }) => {
 
     if (!isCreator) {
         errorMessage = [
-            getLangText("If you don't have any creations to register at the moment, you can still "),
-            (
-                <a key="signup-link" href={AppUrls.APP_SIGNUP}>
-                    {getLangText('sign up')}
-                </a>
-            ),
+            getLangText("If you don't have any creations to register at the moment, " +
+                        'you can still '),
+            (<a key="signup-link" href={AppUrls.APP_SIGNUP}>
+                {getLangText('sign up')}
+            </a>),
             getLangText(' now for an account.')
         ];
     } else if (errors && Object.keys(errors).length) {
@@ -85,7 +83,7 @@ const WorkRegistrationForm = React.createClass({
     },
 
     render() {
-        const { onSubmit, selectedFile } = this.props;
+        const { selectedFile } = this.props;
         const { errors, isCreator } = this.state;
 
         return (
@@ -99,7 +97,8 @@ const WorkRegistrationForm = React.createClass({
                 buttonEdited={null}
                 buttonSubmitting={(
                     <FormSubmitButton disabled>
-                        {getLangText('Generating Certificate')} <Spinner className={styles['submit-spinner']} />
+                        {getLangText('Generating Certificate')}
+                        <Spinner className={styles['submit-spinner']} />
                     </FormSubmitButton>
                 )}
                 customPropertyTypes={[SimpleProperty]}
@@ -110,36 +109,36 @@ const WorkRegistrationForm = React.createClass({
                 <UploadFileStatus file={selectedFile} />
                 <hr styleName="property-divider" />
                 <SimpleProperty
+                    overrideFormDefaults
                     footer={getLangText('SAMPLE TEXT: When you are registering as the owner you ' +
                                         'create a permanent record of your work on the blockchain.')}
                     footerType={PropertySubtextFooter}
                     name="is_creator"
-                    onChange={this.onCreatorCheckboxChange}
-                    overrideFormDefaults>
+                    onChange={this.onCreatorCheckboxChange}>
                     <InputCheckbox
                         defaultChecked
-                        label={getLangText('Yes, I am the creator of this file')}
                         required
+                        label={getLangText('Yes, I am the creator of this file')}
                         styleName="checkbox-input" />
                 </SimpleProperty>
                 <SimpleProperty name="title">
                     <input
-                        type="text"
+                        required
                         placeholder={getLangText('Title of work')}
-                        required />
+                        type="text" />
                 </SimpleProperty>
                 <SimpleProperty name="artist_name">
                     <input
-                        type="text"
+                        required
                         placeholder={getLangText("Creator's Name")}
-                        required />
+                        type="text" />
                 </SimpleProperty>
                 <SimpleProperty name="date_created">
                     <input
-                        type="number"
-                        placeholder={getLangText('Year created')}
+                        required
                         min={1900}
-                        required />
+                        placeholder={getLangText('Year created')}
+                        type="number" />
                 </SimpleProperty>
                 <WorkRegistrationErrorMessage errors={errors} isCreator={isCreator} />
             </Form>

@@ -1,5 +1,5 @@
-export const APP_BASE_PATH = process.env.APP_BASE_PATH;
 export const APP_VERSION = process.env.APP_VERSION;
+export const ONION_BASE_PATH = process.env.ONION_BASE_PATH;
 
 // Raven config
 export const Raven = {
@@ -9,8 +9,8 @@ export const Raven = {
 };
 
 export default {
-    APP_BASE_PATH,
     APP_VERSION,
+    ONION_BASE_PATH,
 
     Raven
 };

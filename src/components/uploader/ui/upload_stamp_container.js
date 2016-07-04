@@ -11,7 +11,7 @@ import UploadSvg from '../../../styles/icons/upload_svg.svg';
 import styles from './upload_stamp_container.scss';
 
 
-const { func } = React.PropTypes;
+const { func, object } = React.PropTypes;
 
 // Helper components
 const UploadStampButton = CssModules((props) => (
@@ -32,6 +32,10 @@ UploadStampButton.displayName = 'UploadStampButton';
 UploadStampHeader.displayName = 'UploadStampHeader';
 
 
+const propTypes = {
+    selectedFile: object
+};
+
 const contextTypes = {
     handleSelectFiles: func.isRequired
 };
@@ -49,6 +53,7 @@ const UploadStampContainer = ({ selectedFile }, { handleSelectFiles }) => (
     </div>
 );
 
+UploadStampContainer.propTypes = propTypes;
 UploadStampContainer.contextTypes = contextTypes;
 
 export default CssModules(UploadStampContainer, styles);

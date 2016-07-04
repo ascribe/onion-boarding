@@ -7,7 +7,7 @@ import styles from './form_submit_button.scss';
 
 
 const FormSubmitButton = (props) => (
-    <Button {...props} classType="form" styles={styles} wide />
+    <Button {...props} wide classType="form" styles={styles} />
 );
 
 export default CssModules(FormSubmitButton, styles);
