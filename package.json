@@ -18,7 +18,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ascribe",
-  "license": "Copyright",
+  "license": "LGPL-3.0-only",
   "private": true,
   "devDependencies": {
     "autoprefixer": "^6.3.3",
