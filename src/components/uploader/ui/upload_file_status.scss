@@ -1,0 +1,47 @@
+.container {
+    font-size: 0.9em;
+}
+
+.file-name {
+    color: $onionboarding-colors--text-primary;
+}
+
+.file-size {
+    color: $onionboarding-colors--text-subtext;
+    font-size: 0.9em;
+    margin-left: 2px;
+}
+
+.progress-container {
+    color: $onionboarding-colors--text-primary;
+    margin-left: 10px;
+}
+
+.progress-percent {
+    color: $onionboarding-colors--text-secondary;
+    font-weight: normal;
+    margin-right: 3px;
+}
+
+.file-icon-container {
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Icons */
+.file-icon-extension {
+    color: $onionboarding-colors--text-base;
+    bottom: 6px;
+    font-size: 7px;
+    font-weight: normal;
+    position: absolute;
+    right: 4px;
+    text-transform: uppercase;
+}
+
+.progress-complete-icon {
+    fill: $onionboarding-colors--text-secondary;
+    margin: 0 6px;
+}

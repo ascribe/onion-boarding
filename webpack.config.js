@@ -6,36 +6,63 @@ const webpack = require('webpack');
 const autoPrefixer = require('autoprefixer');
 const combineLoaders = require('webpack-combine-loaders');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+require('dotenv').load({ silent: true });
 
 const PRODUCTION = process.env.NODE_ENV === 'production';
 const EXTRACT = process.env.NODE_ENV === 'extract';
 
 const PATHS = {
-    app: path.resolve(__dirname, 'app'),
-    build: path.resolve(__dirname, 'build'),
-    dist: path.resolve(__dirname, 'dist'),
-    nodeModules: path.resolve(__dirname, 'node_modules')
+    APP: path.resolve(__dirname, 'src/app.js'),
+    BUILD: path.resolve(__dirname, 'build'),
+    DIST: path.resolve(__dirname, 'dist'),
+    NODE_MODULES: path.resolve(__dirname, 'node_modules')
 };
 
-// Browsers to target when prefixing CSS.
-const COMPATIBILITY = ['Chrome >= 30', 'Safari >= 6.1', 'Firefox >= 35', 'Opera >= 32', 'iOS >= 8', 'Android >= 2.3', 'ie >= 10'];
+// Definitions injected into app
+const DEFINITIONS = {
+    'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+
+        APP_VERSION: JSON.stringify(process.env.APP_VERSION || 'dev'),
+
+        API_URL: JSON.stringify(process.env.API_URL || 'https://staging.ascribe.io/api'),
+        APP_BASE_PATH: JSON.stringify(process.env.APP_BASE_PATH || '/'),
+        SERVER_URL: JSON.stringify(process.env.SERVER_URL || 'https://staging.ascribe.io/'),
+
+        RAVEN_DSN_URL: JSON.stringify(process.env.RAVEN_DSN_URL || ''),
+
+        S3_ACCESS_KEY: JSON.stringify(process.env.S3_ACCESS_KEY || '')
+    }
+};
 
 // Plugins
 const plugins = [
-    new webpack.DefinePlugin({
-        'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') }
-    }),
-    new webpack.NoErrorsPlugin()
+    new webpack.DefinePlugin(DEFINITIONS),
+    new webpack.NoErrorsPlugin(),
+    new HtmlWebpackPlugin({
+        filename: 'index.html',
+        minify: PRODUCTION ? {
+            collapseWhitespace: true,
+            minifyJS: true,
+            removeComments: true,
+            removeRedundantAttributes: true
+        } : false,
+        template: path.resolve(__dirname, 'src/index_template.html'),
+
+        // Our own options
+        PRODUCTION: PRODUCTION
+    })
 ];
 
-const extractPlugins = [
+const EXTRACT_PLUGINS = [
     new ExtractTextPlugin(PRODUCTION ? 'styles.min.css' : 'styles.css', {
         allChunks: true
     })
 ];
 
-const prodPlugins = [
-    ...extractPlugins,
+const PROD_PLUGINS = [
     new webpack.optimize.UglifyJsPlugin({
         compress: {
             warnings: false
@@ -50,29 +77,28 @@ const prodPlugins = [
     })
 ];
 
-if (PRODUCTION) {
-    plugins.push(...prodPlugins);
+if (EXTRACT || PRODUCTION) {
+    plugins.push(...EXTRACT_PLUGINS);
 }
 
-if (EXTRACT) {
-    plugins.push(...extractPlugins);
+if (PRODUCTION) {
+    plugins.push(...PROD_PLUGINS);
 }
 
 // Modules
-// CSS loader
+// **Note** Make sure css-loader's importLoader value is equal to the number of loaders after it
+// to make sure that CSS Module composes also invoke the full loader chain.
 const CSS_LOADER = combineLoaders([
     {
         loader: 'css',
         query: {
             modules: true,
-            importLoaders: 2,
+            importLoaders: 3,
             localIdentName: '[path]__[name]__[local]_[hash:base64:5]',
             sourceMap: true
         }
     },
-    {
-        loader: 'postcss'
-    },
+    { loader: 'postcss' },
     {
         loader: 'sass',
         query: {
@@ -80,19 +106,40 @@ const CSS_LOADER = combineLoaders([
             outputStyle: 'expanded',
             sourceMap: true
         }
-    }
+    },
+    { loader: 'sass-resources' }
+]);
+
+const PNG_LOADER = combineLoaders([
+    {
+        loader: 'url',
+        query: {
+            mimetype: 'image/png'
+        }
+    },
+    // Can't supply the query using the query object as json formats aren't supported
+    // Let's use the super awesome optimization levels for now, since we're not going to be adding
+    // too many png assets for pngquant and optipng to crunch.
+    { loader: 'image-webpack?{ optimizationLevel: 7, pngquant: { quality: "65-90", speed: 1 } }' }
+]);
+
+const SVG_LOADER = combineLoaders([
+    { loader: 'babel' },
+    { loader: 'svg-react' },
+    // Can't supply the query using the query object as json formats aren't supported
+    { loader: 'image-webpack?{ svgo: { plugins: [{ removeTitle: true }, { cleanupIDs: false }] } }' }
 ]);
 
 
 const config = {
     entry: [
         PRODUCTION || EXTRACT ? 'bootstrap-loader/extractStyles' : 'bootstrap-loader',
-        PATHS.app
+        PATHS.APP
     ],
 
     output: {
         filename: PRODUCTION ? 'bundle.min.js' : 'bundle.js',
-        path: PRODUCTION ? PATHS.dist : PATHS.build
+        path: PRODUCTION ? PATHS.DIST : PATHS.BUILD
     },
 
     debug: !PRODUCTION,
@@ -100,6 +147,14 @@ const config = {
     devtool: PRODUCTION ? '#source-map' : '#inline-source-map',
 
     resolve: {
+        // Dedupe any dependencies' polyfill, react, or react-css-modules dependencies
+        // FIXME: check if this is still necessary without npm link
+        alias: {
+            'babel-runtime': path.resolve(PATHS.NODE_MODULES, 'babel-runtime'),
+            'core-js': path.resolve(PATHS.NODE_MODULES, 'core-js'),
+            'react': path.resolve(PATHS.NODE_MODULES, 'react'),
+            'react-css-modules': path.resolve(PATHS.NODE_MODULES, 'react-css-modules'),
+        },
         extensions: ['', '.js'],
         modules: ['node_modules'] // Don't use absolute path here to allow recursive matching
     },
@@ -110,7 +165,7 @@ const config = {
         loaders: [
             {
                 test: /\.js$/,
-                exclude: [PATHS.nodeModules],
+                exclude: [PATHS.NODE_MODULES],
                 loader: 'babel',
                 query: {
                     cacheDirectory: true
@@ -118,14 +173,25 @@ const config = {
             },
             {
                 test: /\.s[ac]ss$/,
-                exclude: [PATHS.nodeModules],
+                exclude: [PATHS.NODE_MODULES],
                 loader: PRODUCTION || EXTRACT ? ExtractTextPlugin.extract('style', CSS_LOADER)
                                               : `style!${CSS_LOADER}`
+            },
+            {
+                test: /\.png$/,
+                exclude: [PATHS.NODE_MODULES],
+                loader: PNG_LOADER
+            },
+            {
+                test: /\.svg$/,
+                exclude: [PATHS.NODE_MODULES],
+                loader: SVG_LOADER
             }
         ]
     },
 
-    postcss: [autoPrefixer({ browsers: COMPATIBILITY })]
+    postcss: [autoPrefixer()],
+    sassResources: './sass-resources.scss'
 };
 
 module.exports = config;

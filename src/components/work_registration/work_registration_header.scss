@@ -1,0 +1,51 @@
+.container {
+    background: $onionboarding-colors--background-secondary;
+    border-top-right-radius: 275px 300px; /* Magic number */
+    border-bottom-right-radius: 3px 50px; /* Magic number */
+    display: inline-block;
+    height: 100%;
+    position: relative;
+    width: 60%;
+}
+
+.header-text {
+    left: 35px;
+    margin: 0;
+    position: absolute;
+    transform: translateY(-55%);
+    top: 50%;
+}
+
+.pretext {
+    color: $onionboarding-colors--text-primary;
+}
+
+.emphasis {
+    color: $onionboarding-colors--text-secondary;
+    font-size: 2em;
+    margin: -0.1em 0; /* Move other text vertically closer */
+}
+
+.subtext {
+    color: $onionboarding-colors--text-primary;
+    margin-right: 0.5em;
+    text-align: right;
+}
+
+.help-text-button {
+    background: none;
+    border: none;
+    bottom: 3px;
+    color: $onionboarding-colors--text-primary;
+    font-size: 1.1em;
+    left: 7px;
+    opacity: 0.6; /* @Woj */
+    outline: none;
+    position: absolute;
+
+    &:active,
+    &:focus,
+    &:hover {
+        opacity: 0.9;
+    }
+}

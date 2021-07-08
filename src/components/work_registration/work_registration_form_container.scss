@@ -1,0 +1,33 @@
+.container {
+    composes: clearfix from global;
+
+    background: $onionboarding-colors--background;
+    height: $onionboarding--main-interactive-area-height;
+    position: relative;
+    text-align: initial;
+    width: $onionboarding--main-interactive-area-width;
+}
+
+.back-arrow-icon {
+    fill: $onionboarding-colors--text-subtext;
+    margin-bottom: 1px; /* Center icon with text */
+    margin-left: 3px;
+    margin-right: 6px;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: $onionboarding-colors--text-subtext;
+    font-size: 0.9em;
+    left: 0;
+    padding: 0;
+    position: absolute;
+    top: -22px; /* Move the back button above the background */
+
+    &:active,
+    &:focus,
+    &:hover {
+        opacity: 0.8;
+    }
+}

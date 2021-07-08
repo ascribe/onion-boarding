@@ -14,8 +14,14 @@ styles:
     # Utilities
     utilities: true
 
-    # Selected stylesheets
+    # Normalize
+    normalize: true
+    scaffolding: true
+
+    # Selected stylesheets (and ascribe-react-component dependencies)
     buttons: true
+    component-animations: true
     forms: true
+    popovers: true
 
 scripts: false

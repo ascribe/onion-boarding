@@ -1,0 +1,63 @@
+.container {
+    composes: clearfix from global;
+
+    padding-top: 5%;
+}
+
+.stamp-container {
+    display: inline-block;
+    margin-left: 12%;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.stamp-area {
+    background: $onionboarding-colors--background-secondary;
+    border: 1px $onionboarding-colors--highlight dashed;
+    box-shadow: 0 2px 7px -2px black;
+    height: 120px;
+    width: 145px;
+}
+
+.stamp-button {
+    height: 100%;
+    outline: none;
+    padding: 0;
+    width: 100%;
+}
+
+.stamp-button-text {
+    color: $onionboarding-colors--text-secondary;
+    font-size: 1.2em;
+}
+
+/* Header */
+.header {
+    composes: pull-right from global;
+
+    color: $onionboarding-colors--text-highlight;
+    font-size: 3em;
+    margin-right: 10%;
+    text-align: center;
+    text-shadow: 0px 2px 3px $onionboarding-colors--foreground;
+    width: 55%;
+
+    /* Center responsive multiline text by translating higher when element is larger */
+    margin-top: 150px;
+    transform: translateY(-50%);
+}
+
+/* Icons */
+.stamp-icon {
+    display: inline-block;
+    margin-left: -4px; /* Center stamp icon; text-align: center doesn't quite get us there */
+
+    :global(.stamp_svg-highlight) {
+        fill: white;
+    }
+}
+
+.upload-icon {
+    fill: $onionboarding-colors--text-primary;
+    margin-bottom: 10px;
+}

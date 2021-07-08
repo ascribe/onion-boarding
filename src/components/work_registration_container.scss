@@ -1,0 +1,13 @@
+.drag-and-drop-container {
+    position: absolute;
+    text-align: center;
+    top: 40%; /* Place slightly off-center to leave room for blocks */
+    transform: translateY(-50%);
+    width: 100vw;
+}
+
+/* Limit size of the interactive area for dynamically sized views (ie. uploader) */
+.main-interaction-area {
+    max-height: $onionboarding--main-interactive-area-height;
+    max-width: $onionboarding--main-interactive-area-width;
+}
